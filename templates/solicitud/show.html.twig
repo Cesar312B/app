@@ -1,0 +1,30 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Solicitud{% endblock %}
+
+{% block body %}
+    <h1>SOLICITUD</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ solicitud.id }}</td>
+            </tr>
+            <tr>
+                <th>ARCHIVO</th>
+                <td>{{ solicitud.archivo }}</td>
+            </tr>
+            <tr>
+                <th>FECHA</th>
+                <td>{{ solicitud.fecha ? solicitud.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('solicitud_index') }}">Regresar</a>
+
+    <a href="{{ path('solicitud_edit', {'id': solicitud.id}) }}">Editar</a>
+
+    {{ include('solicitud/_delete_form.html.twig') }}
+{% endblock %}

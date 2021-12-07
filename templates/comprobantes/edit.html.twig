@@ -1,0 +1,28 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Editar comprobantes{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>Editar comprobantes</h1>
+
+    {{ include('comprobantes/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a href="{{ path('comprobantes_index') }}">Regresar</a>
+
+    {{ include('comprobantes/_delete_form.html.twig') }}
+</div>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>     
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+ {% endblock %}
+

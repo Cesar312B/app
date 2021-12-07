@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estudiante{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+  
+  <h5>
+   {{materia.Materia}} "{{ paralelo.grupo.Nombre }}" 
+  </h5>
+
+   
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
+
+        <!-- Registeration Form -->
+      <div class="table-responsive">
+        <table id="asistencias" class="content-table">
+        <thead>
+            <tr>
+               
+                 <th>MATERIA</th>
+                   <th>PARALELO</th>
+                <th>DIA</th>
+                <th>HORA</th>
+                 <th>EDITAR</th>
+                <th>ElIMINAR</th>
+                 
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for h in horarios %}
+            <tr>
+              <td>{{ h.Materia }}</td>
+              <td>{{ h.Paralelo }}</td>
+              <td>{{ h.Dia }}</td>
+               <td>{{ h.Hora_inicio }}--{{ h.Hora_salida }} </td>
+              <td> <a href="{{ path('horario_edit', {id: h.id, p: h.TP, m:h.CD}) }}">Editar</a></br> </td>
+                <td>
+                   <a href="#" class="btn btn-danger delete-article" data-id="{{h.id}}">Eliminar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      </div>
+
+ 
+  <a href="{{ path('paralelos', {'id': materia.id}) }}">LISTA DE PARALELOS </a></br>
+  </div>
+
+{% endblock %}
+{% block javascripts %}
+ 
+          <script> 
+  
+const asistencias = document.getElementById('asistencias');
+
+if (asistencias) {
+asistencias.addEventListener('click', e => {
+if (e.target.className === 'btn btn-danger delete-article') {
+  if (confirm('Esta seguro de eliminar este registro?')) {
+         const value = e.target.getAttribute('data-id');
+            let route = "{{ path('delete_horario', { id: 'fileId_' }) }}";
+            route = route.replace('fileId_', value);
+
+    fetch(route, {
+      method: 'DELETE'
+    }).then(res => window.location.reload());
+  }
+}
+});
+}
+        </script>
+
+
+
+
+
+            <script> 
+               $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+             </script>
+{% endblock %}

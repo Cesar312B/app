@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar horario{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>EDITAR HORARIO </h1>
+    {{h.id}}
+    {{m.Materia}} "{{p.grupo.Nombre}}"
+
+
+    {% for message in app.flashes('exito') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ button_label|default('Editar') }}</button>
+{{ form_end(form) }}
+
+   
+<a href="{{ path('paralelo_horario', {id: p.id, t: m.id}) }}">Retroceder</a></br>
+
+
+
+</div>
+   
+{% endblock %}

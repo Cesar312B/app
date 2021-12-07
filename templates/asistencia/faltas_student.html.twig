@@ -1,0 +1,166 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Asistencia{% endblock %}
+
+{% block body %}
+     <h4 class="text-white">Asistencia</h4>
+
+
+
+
+        <section class="py-5 header">
+    <div class="container py-4">
+    
+
+
+        <div class="row">
+            <div class="col-md-3">
+               
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+
+                        <span class="font-weight-bold small text-uppercase">Informe de asistencias</span></a>
+
+    
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                       
+                        <span class="font-weight-bold small text-uppercase">Record de asistencia</span></a>
+                    </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="table-responsive">
+        <table id="example" class="content-table" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+             
+                <th>Materia</th>
+                 <th>Nivel</th>
+                 <th>Paralelo</th>
+                <th>Faltas %</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+         {% for asistencium in asistencia %}
+            <tr>
+                 <td>{{ asistencium.Materia }}</td>
+                      <td>{{ asistencium.Nivel }}</td>
+                <td>{{ asistencium.Paralelo }}</td>
+                <td>{{ asistencium.Faltas |number_format(2, '.', '.') }} </td>
+           
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      </div>
+                    </div>
+                    
+                 
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                       <div class="table-responsive">
+            <table id="example1" style="width:100%" class="content-table">
+              <thead>
+                <tr>
+             
+                <th>Materia</th>
+                <th>Nivel</th>
+                 <th>Paralelo</th>
+                <th>Faltas</th>
+                <th>Fecha</th>
+                 <th>Periodo-Académico</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for asistencium in asistencias %}
+            <tr>
+                  <td>{{ asistencium.Materia }}</td>
+                  <td>{{ asistencium.Nivel }}</td>
+                   <td>{{ asistencium.Paralelo }}</td>
+                <td>{{ asistencium.Asistencia }}</td>
+                <td>{{ asistencium.Fecha ? asistencium.Fecha|date('Y-m-d') : '' }}</td>
+                 <td>{{ asistencium.Periodo }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No hay registros</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+         <script> 
+
+        $(function() {
+ $(document).ready(function() {
+   $('#example1').DataTable({
+       'responsive': true,
+             language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+   }); 
+   
+ });
+});
+</script>
+
+
+         <script> 
+
+ $(document).ready(function (){
+    var table = $('#example').DataTable({
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+        "searching": false,
+        "paging":   false,
+        'responsive': true,
+           'rowCallback': function(row, data, index){
+    if(data[2]> 20.0){
+        $(row).find('td:eq(2)').css('color', 'red');
+    }
+  }
+    });
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Expand row details
+        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Collapse row details
+        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
+    });
+});
+
+</script>
+          
+        {% endblock %}

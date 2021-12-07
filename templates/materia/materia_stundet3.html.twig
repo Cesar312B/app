@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Estudiante{% endblock %}
+
+{% block body %}
+  
+  <h5>
+   {{ materias.Materia }}
+  </h5>
+  
+
+   <div class="p-5 bg-white rounded shadow mb-5">     
+    
+   <a href="{{ path('materia_teacher') }}"> Regresar</a>
+<table id="example" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+             <th>ESTUDIANTE</th>
+             <th>MATERIA</th>
+                <th>TOTAL</th>
+                   <th>NOTA SUPLETORIO</th>
+                   <th>TOTAL+ SUPLETORIO</th>
+                  <th>ACCIONES</th>
+           
+            <th class="none">PARCIAL 1: </th>
+            <th class="none">PARCIAL 2:</th>
+            <th class="none">PARCIAL 3:</th>
+  
+         
+        </tr>
+    </thead>
+    
+      <tbody>
+        {% for nota in notas %}
+            <tr>
+            <td>{{ nota.Nombre }} {{ nota.Apellido }}</td>
+               <td>{{ nota.Materia }}</td>
+                    <td>{{ nota.Total}}</td>
+                <td>{{ nota.nota_supletorio}}</td>
+                <td>{{ nota.Supletorio}}</td>
+                  <td><a href="/asistencia/ast/{{nota.id}}/mat/{{nota.CD}}">Asistencia</a>
+                  </td>
+
+                <td> {{ nota.nota1 }} | {{ nota.nota2 }} |{{ nota.nota3 }} | {{ nota.nota4 }} | {{ nota.nota5 }} =  {{ nota.Parcial1 }} <a href="{{ path('parcial1', {'id': nota.id}) }}">Editar</a> </td>
+                  <td>{{ nota.nota6 }} | {{ nota.nota7 }} | {{ nota.nota8 }}| {{ nota.nota9 }} | {{ nota.nota10 }} = {{ nota.Parcial2 }}  <a href="{{ path('parcial2', {'id': nota.id}) }}">Editar</a> </td>
+                 <td>{{ nota.nota11 }} | {{ nota.nota12 }} | {{ nota.nota13 }} | {{ nota.nota14 }} | {{ nota.nota15 }} = {{ nota.Parcial3 }}   <a href="{{ path('parcial3', {'id': nota.id}) }}">Editar</a></td>
+               
+            </tr>
+        
+        {% else %}
+            <tr>
+                <td colspan="18">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+ 
+</table>
+</div>
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+
+         <script> 
+
+ $(document).ready(function (){
+    var table = $('#example').DataTable({
+        'responsive': true
+    });
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Expand row details
+        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Collapse row details
+        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
+    });
+});
+
+</script>
+          
+        {% endblock %}

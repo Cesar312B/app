@@ -1,0 +1,357 @@
+html {
+  min-height: 100%;
+}
+body {
+  height: 100%;
+  min-height: 110vh;
+  background: #003C88;
+background: linear-gradient(110deg, #003C88 35%, #B4C563 61%);
+}
+
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.vertical-nav {
+    min-width: 17rem;
+    width: 17rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+   
+  }
+  
+  .page-content {
+    width: calc(100% - 17rem);
+    margin-left: 17rem;
+    transition: all 0.4s;
+  }
+  
+  /* for toggle behavior */
+  
+  #sidebar.active {
+    margin-left: -17rem;
+  }
+  
+  #content.active {
+    width: 100%;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    #sidebar {
+      margin-left: -17rem;
+    }
+    #sidebar.active {
+      margin-left: 0;
+    }
+    #content {
+      width: 100%;
+      margin: 0;
+    }
+    #content.active {
+      margin-left: 17rem;
+      width: calc(100% - 17rem);
+    }
+  }
+  
+  /*
+  *
+  * ==========================================
+  * FOR DEMO PURPOSE
+  * ==========================================
+  *
+  */
+
+
+  
+  .separator {
+    margin: 3rem 0;
+    border-bottom: 1px dashed #fff;
+  }
+  
+  .text-uppercase {
+    letter-spacing: 0.1em;
+  }
+  
+  .text-gray {
+    color: rgb(9, 106, 170);
+  }
+
+
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://res.cloudinary.com/mhmd/image/upload/v1555917661/art-colorful-contemporary-2047905_dxtao7.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+/* Rounded tabs */
+
+@media (min-width: 700px) {
+  .rounded-nav {
+    border-radius: 65rem !important;
+  }
+}
+
+@media (min-width: 700px) {
+  .rounded-nav .nav-link {
+    border-radius: 65rem !important;
+  }
+}
+
+/* With arrow tabs */
+
+.with-arrow .nav-link.active {
+  position: relative;
+}
+
+.with-arrow .nav-link.active::after {
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #2b90d9;
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+/* lined tabs */
+
+.lined .nav-link {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.lined .nav-link:hover {
+  border: none;
+  border-bottom: 3px solid transparent;
+}
+
+.lined .nav-link.active {
+  background: none;
+  color: #555;
+  border-color: #2b90d9;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+
+.nav-pills .nav-link {
+  color: #555;
+}
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+/* Horizontal line */
+.collapsible-link::before {
+  content: '';
+  width: 14px;
+  height: 2px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 1rem;
+  display: block;
+  transition: all 0.3s;
+}
+
+/* Vertical line */
+.collapsible-link::after {
+  content: '';
+  width: 2px;
+  height: 14px;
+  background: #333;
+  position: absolute;
+  top: calc(50% - 7px);
+  right: calc(1rem + 6px);
+  display: block;
+  transition: all 0.3s;
+}
+
+.collapsible-link[aria-expanded='true']::after {
+  transform: rotate(90deg) translateX(-1px);
+}
+
+.collapsible-link[aria-expanded='true']::before {
+  transform: rotate(180deg);
+}
+
+
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.border-md {
+  border-width: 3px;
+}
+
+
+
+
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+.form-control:not(select) {
+  padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+  height: 52px;
+  padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.img-thumbnail {
+  background: rgb(38, 128, 5);
+  background: linear-gradient(110deg, rgb(38, 128, 5) 35%, rgb(218, 205, 29) 61%);
+}
+
+
+
+
+
+/*
+*
+* ==========================================
+* Tablas 
+* ==========================================
+*
+*/
+
+
+.content-table {
+  border-collapse: collapse;
+  margin: 3px;
+  font-size: 0.80em;
+  font-weight: 480;
+  min-width: 80px;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background: rgb(38, 128, 5);
+  background: linear-gradient(110deg, rgb(38, 128, 5) 35%, rgb(218, 205, 29) 61%);
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #dddddd00 ;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #000000;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #000000;
+}
+
+	
+.content-table tfoot th { white-space: nowrap; }
+
+.dropbtn {
+  background-color: #000000;
+  color: white;
+  padding: 8px;
+  font-size: 9px;
+  width: 80px;
+  margin-right: 5px;
+  font-family: 'Istok Web', sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.top-main .dropdown-menu {
+  width: calc(100% + 60px);
+  position: absolute;
+  left: -30px;
+  }
+
+
+.profile-header {
+    transform: translateY(5rem);
+}
+
+.edit {
+  position: right;
+}
+
+
+
+

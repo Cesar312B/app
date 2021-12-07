@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Periodo index{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h4>PERIODOS</h4></h4>
+ {% if is_granted("ROLE_SUPER_ADMIN")  %} 
+    <a href="{{ path('periodo_new') }}">CREAR NUEVO PERIODO</a>
+ {% endif %}
+    <table id="example" class="content-table ">
+        <thead>
+            <tr>
+                <th>FECHA</th>
+                <th>PERIODO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for periodo in periodos %}
+            <tr>
+        
+                <td>{{ periodo.Fecha ? periodo.Fecha|date('Y-m-d') : '' }}</td>
+                <td>{{ periodo.Periodo }}</td>
+                <td>
+                      {% if is_granted("ROLE_SUPER_ADMIN")  %}    
+                    <a href="{{ path('periodo_edit', {'id': periodo.id}) }}">EDITAR</a>
+                    {% endif %}
+                    <a href="{{ path('notas_admin', {'id': periodo.id}) }}">CONSULTAS</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+
+        </script>
+
+
+  
+
+   {% endblock %}

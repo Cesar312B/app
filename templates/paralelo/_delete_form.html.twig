@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('paralelo_delete', {'id': paralelo.id}) }}" onsubmit="return confirm('¿Está seguro de eliminar este registro?.Si elimina este regitro se borrará toda la información relacionada con ese paralelo');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ paralelo.id) }}">
+    <button class="btn">ELIMINAR</button>
+</form>

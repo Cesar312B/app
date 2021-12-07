@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('student_delete', {'id': student.id}) }}" onsubmit="return confirm('¿Esta seguro que desea eliminar?.Si elimina el registro de este estudiante, se borrará todos los registro relacionados con él');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ student.id) }}">
+    <button class="btn btn-danger">Eliminar</button>
+</form>

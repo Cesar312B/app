@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estudiante{% endblock %}
+
+{% block body %}
+ 
+
+   
+ <div class="p-5 bg-white rounded shadow mb-5">     
+        
+     <div class="table-responsive-sm">     
+
+     <table id="example" style="width:100%" class="content-table">
+              <thead>
+                <tr>
+                <th>CARRERA</th>
+                <th>MATERIA</th>
+                <th>NIVEL</th>
+                <th>PARALELO</th>
+                <th>ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for materium in paralelos %}
+            <tr>
+                 <td>{{ materium.Carrera }}</td>
+                <td>{{ materium.Materia }}</td>
+                <td>{{ materium.Nivel}}</td>
+                  <td>{{ materium.Paralelo }}</td>
+                <td>
+                    <a href="{{ path('studintes_paralelo', {id: materium.id, m: materium.CD}) }}">ESTUDIANTES</a> 
+                </td>
+                 
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+
+            </div>
+            </div>
+
+
+
+{% endblock %}
+
+
+
+
+{% block javascripts %}
+
+
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+      "searching": false,
+        "paging":   false,
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+
+        </script>
+
+
+  
+
+   {% endblock %}
+

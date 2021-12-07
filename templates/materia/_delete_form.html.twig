@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('materia_delete', {'id': materium.id}) }}" onsubmit="return confirm('¿Está seguro de eliminar este registro?. Si elimina este registro se borrará todos los archivos relacionados a esta materia');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ materium.id) }}">
+    <button class="btn btn-danger">Eliminar</button>
+</form>

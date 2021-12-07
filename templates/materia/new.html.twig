@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva Materia{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>REGISTRAR NUEVA MATERIA</h1>
+
+    {{ include('materia/_form.html.twig') }}
+
+    <a href="{{ path('materia_index') }}">Regresar a la Lista</a>
+</div>
+{% endblock %}

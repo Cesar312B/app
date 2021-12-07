@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notas index{% endblock %}
+
+{% block body %}
+
+
+  <div class="p-5 bg-white rounded shadow mb-5">     
+          <h1>NOTAS</h1>
+          {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Importar datos') }}</button>
+     {{ form_end(form) }}    
+       
+          <table id="example" class="content-table table-sm" cellspacing="0" width="100%" >
+    
+        <thead>
+
+               <tr>
+                <th>ID</th>
+            <th>PARCIAL 1</th>
+            <th>PARCIAL 2</th>
+            <th>PARCIAL 3</th> 
+            </tr>
+        </thead>
+         <tbody>
+        {% for n in notas %}
+            <tr>
+                
+             
+               <td>{{n.id}}</td>
+            
+
+                 <td> {{ n.nota1 }} | {{ n.nota2 }} |{{ n.nota3 }} | {{ n.nota4 }} | {{ n.nota5 }} </td>
+                  <td>{{ n.nota6 }} | {{ n.nota7 }} | {{ n.nota8 }}| {{ n.nota9 }} | {{ n.nota10 }}   </td>
+                 <td>{{ n.nota11 }} | {{ n.nota12 }} | {{ n.nota13 }} | {{ n.nota14 }} | {{ n.nota15 }} </td>
+            
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ </div>
+
+
+  
+{% endblock %}
+ {% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+ <script> 
+
+ $(document).ready(function (){
+   
+    var table = $('#example').DataTable({
+        
+       
+    dom: 'Bfrtip',
+
+
+  'responsive': true,
+
+    });
+
+
+
+ 
+   
+
+});
+
+</script>
+
+
+          
+        {% endblock %}

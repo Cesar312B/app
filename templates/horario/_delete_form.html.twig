@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('horario_delete', {'id': horario.id}) }}" onsubmit="return confirm('¿Está seguro de eliminar este archivo?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ horario.id) }}">
+    <button class="btn">Eliminar</button>
+</form>

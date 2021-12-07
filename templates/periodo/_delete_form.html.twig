@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('periodo_delete', {'id': periodo.id}) }}" onsubmit="return confirm('¿Esta seguro de eliminar este registro?. Si elimina se borrará todos los registros relacionados con este periodo académico.');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ periodo.id) }}">
+    <button class="btn btn-danger">Eliminar</button>
+</form>

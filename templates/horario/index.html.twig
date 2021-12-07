@@ -1,0 +1,185 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Horario index{% endblock %}
+
+{% block body %}
+  
+<div class="card-body p-5 bg-white rounded">
+  <h4>Horario </h4>
+<div class="table-responsive">
+    <table class"content-table">
+        <thead>
+            <tr>
+               
+                <th>LUNES</th>
+                 <th>MARTES</th>
+                 <th>MIÉRCOLES</th>
+                 <th>JUEVES</th>
+                 <th>VIERNES</th>
+                 <th>SÁBADO</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+            <tr>
+           <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in l %}
+            <tr>
+               
+                <td> 
+                
+               <strong> {{ horario.Materia}}  "{{horario.Paralelo}}"</strong>
+                 </br>
+                 {{horario.Nivel}}
+                 </br>
+               {{horario.Hora_inicio}} -- {{horario.Hora_salida}} 
+                  </br>
+               {{horario.Nombre}} -- {{horario.Apellido}} 
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+
+        <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in m %}
+            <tr>
+               
+                <td> 
+                
+              <strong>   {{ horario.Materia}} "{{horario.Paralelo}}" </strong> 
+                 </br>
+                 {{horario.Nivel}} 
+                  </br> 
+                {{horario.Hora_inicio}} -- {{horario.Hora_salida}}
+                  </br>
+                {{horario.Nombre}} -- {{horario.Apellido}}
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+
+
+
+        <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in mt %}
+            <tr>
+               
+                <td> 
+                
+               <strong>  {{ horario.Materia}} "{{horario.Paralelo}}" </strong> 
+                 </br>
+                 {{horario.Nivel}}  
+                  </br> 
+                {{horario.Hora_inicio}} -- {{horario.Hora_salida}}
+                  </br>
+                {{horario.Nombre}} -- {{horario.Apellido}}
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+
+
+        <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in j %}
+            <tr>
+               
+                <td> 
+                
+               <strong>  {{ horario.Materia}}  "{{horario.Paralelo}}" </strong> 
+                 </br>
+                {{horario.Nivel}} 
+                </br>
+                 {{horario.Hora_inicio}} -- {{horario.Hora_salida}}
+                   </br>
+                {{horario.Nombre}} -- {{horario.Apellido}}
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+
+
+        <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in v %}
+            <tr>
+               
+                <td> 
+                
+             <strong>    {{ horario.Materia}}  "{{horario.Paralelo}}" </strong> 
+                 </br>
+                 {{horario.Nivel}}
+                 </br>
+                 {{horario.Hora_inicio}} -- {{horario.Hora_salida}}
+                   </br>
+                {{horario.Nombre}} -- {{horario.Apellido}}
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+
+        <td>  
+        <table class="table">
+        <tbody>
+        {% for horario in s %}
+            <tr>
+               
+                <td> 
+                
+               <strong>  {{ horario.Materia}}   "{{horario.Paralelo}}" </strong> 
+                 </br>
+                {{horario.Nivel}} 
+                </br>
+                 {{horario.Hora_inicio}} -- {{horario.Hora_salida}}
+                   </br>
+                {{horario.Nombre}} -- {{horario.Apellido}}
+                 
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+
+        </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+{% endblock %}

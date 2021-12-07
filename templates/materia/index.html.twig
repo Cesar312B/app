@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Materia index{% endblock %}
+
+{% block body %}
+   
+
+
+ <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+  {% if is_granted("ROLE_SUPER_ADMIN") %}
+    <li class="nav-item active">
+      <a class="nav-link" href="{{ path('carrera_index') }}">CREAR NUEVA CARRERA</a>
+    </li>
+     {% endif %}
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('nivel_index') }}">CREAR NUEVO NIVEL</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ path('grupo_index') }}">CREAR NUEVO GRUPO</a>
+    </li>
+   
+  </ul>
+</nav> 
+<br/>
+ 
+
+
+   <div class="p-5 bg-white rounded shadow mb-5">     
+      <a href="{{ path('materia_new') }}">+ CREAR NUEVA MATERIA </a><br/>  
+       
+ <div class="table-responsive">
+     <table id="example" style="width:100%" class="content-table table-sm">
+              <thead>
+                <tr>
+                <th>MATERIA</th>
+                <th>NIVEL</th>
+                <th>CARRERA</th>
+                <th>HORAS-CLASE</th>
+                <th>ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+            {% for materium in materias %}
+            <tr>
+                <td>{{ materium.Materia }}</td>
+                 <td>{{ materium.Nivel}}</td>
+                <td>{{ materium.Carrera}}</td>
+                <td>{{ materium.Duracion }}</td>
+                <td>
+                    <a href="{{ path('materia_edit', {'id': materium.id}) }}">EDITAR</a></br>
+                     <a href="{{ path('paralelos', {'id': materium.id}) }}">PARALELOS</a></br>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+
+            </div>
+
+            </div>
+
+    
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+               searchPanes: {
+                clearMessage: 'Limpiar panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun filtro seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            }
+        },
+      'responsive': true,
+       dom: 'Plfrtip',
+
+      
+  
+    });
+});
+
+        </script>
+
+
+  
+
+   {% endblock %}

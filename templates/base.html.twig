@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html>
+<!-- Head contiene todas las librresias css para boostrap, higchars y datatables -->
+    <head>
+        <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" >
+              <link rel="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" >
+             <link rel="stylesheet" href="https://cdn.datatables.net/searchpanes/1.2.1/css/searchPanes.dataTables.min.css" >
+               <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.2/css/select.dataTables.min.css" >
+                  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" >
+                  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css" >
+                   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" >
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">    
+        <title>{% block title %}BIENVENIDO{% endblock %}</title>
+        {% block stylesheets %}
+        
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
+        {% endblock %}
+    </head>
+    <!-- Contenido base de la aplicacion -->
+    <body>
+    <!-- Vertical navbar -->
+<div class="vertical-nav bg-white" id="sidebar">
+ {% if app.user %}
+  <div class="py-4 px-3 mb-4 bg-light">
+    <div class="media d-flex align-items-center"><img src="{{ asset('uploads/'~app.user.foto) }}" alt="..." width="60" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+        <h6 class="m-0">{{ app.user.username }}</h6>
+        <p class="font-weight-light text-muted mb-0">{{ app.user.Nombre }} {{ app.user.Apellido }}</p>
+         <a href="{{ path('forgot') }}">Cambiar la Contraseña</a>
+         <a href="{{ path('app_logout') }}">Salir</a>
+      </div>
+    </div>
+  </div>
+ {% endif %}
+
+
+  {% if is_granted("ROLE_SUPER_ADMIN") %}
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">ADMINISTRADOR</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ">
+      <a href="{{ path('student_index') }}" class="nav-link text-dark  font-italic bg-light">
+               
+                ESTUDIANTES
+            </a>
+    </li>
+    <li class="nav-item ">
+      <a href="{{ path('employed_index') }}" class="nav-link text-dark  font-italic bg-light">
+              
+                EMPLEADOS
+            </a>
+    </li>
+ 
+  
+    <li class="nav-item">
+     
+          
+             <a href="{{ path('materia_index') }}" class="nav-link text-dark  font-italic bg-light">
+              
+                MATERIAS
+            </a>
+              
+    </li>
+
+
+     <li class="nav-item">
+     
+          
+             <a href="{{ path('periodo_index') }}" class="nav-link text-dark  font-italic bg-light">
+                ESTADÍSTICAS
+            </a>
+              
+    </li>
+
+    
+     <li class="nav-item">
+     
+          
+             <a href="{{ path('modulos_index') }}" class="nav-link text-dark  font-italic bg-light">
+                ADMINISTRAR MÓDULOS
+            </a>
+              
+    </li>
+
+      <li class="nav-item">
+     
+          
+             <a href="{{ path('auditoria') }}" class="nav-link text-dark  font-italic bg-light">
+                AUDITORIA
+            </a>
+              
+    </li>
+
+  </ul>
+  {% endif %}
+  
+
+
+  
+  {% if is_granted("ROLE_SECRETARIA") %}
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">SECRETARIA</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item ">
+      <a href="{{ path('student_index') }}" class="nav-link text-dark  font-italic bg-light">
+               
+                ESTUDIANTES
+            </a>
+    </li>
+        <li class="nav-item ">
+      <a href="{{ path('employed_index') }}" class="nav-link text-dark  font-italic bg-light">
+              
+                EMPLEADOS
+            </a>
+    </li>
+ 
+
+ 
+    <li class="nav-item">
+     
+          
+             <a href="{{ path('materia_index') }}" class="nav-link text-dark  font-italic bg-light">
+              
+                MATERIAS
+            </a>
+              
+    </li>
+
+
+     <li class="nav-item">
+     
+          
+             <a href="{{ path('periodo_index') }}" class="nav-link text-dark  font-italic bg-light">
+                ESTADÍSTICAS
+            </a>
+              
+    </li>
+
+  </ul>
+  {% endif %}
+
+
+
+
+  {% if is_granted("ROLE_PROFESOR") %}
+
+
+  <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">DOCENTE</p>
+
+  <ul class="nav flex-column bg-white mb-0">
+    <li class="nav-item">
+      <a href="{{ path('paralelo_mp')}}" class="nav-link text-dark  font-italic bg-light">
+                
+                ASIGNATURAS
+            </a>
+    </li>
+
+    <li class="nav-item">
+      <a href="{{ path('h_employed')}}" class="nav-link text-dark  font-italic bg-light">
+                
+                HORARIO
+            </a>
+    </li>
+
+      <li class="nav-item">
+      <a href="{{ path('notas_tc')}}" class="nav-link text-dark  font-italic bg-light">
+                
+                ESTADÍSTICAS
+            </a>
+    </li>
+   
+   
+  </ul>
+  {% endif %}
+
+</div>
+<!-- End vertical navbar -->
+
+
+<!-- Page content holder -->
+
+
+<div class="page-content p-3 " id="content">
+  <!-- Toggle button -->
+  <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><small class="text-uppercase font-weight-bold">Barra</small></button>
+    
+    {% block body %}
+
+     {% endblock %}
+
+</div>
+
+
+
+
+
+
+<!-- Contenidon de  todas las librresias javascript para boostrap y datatables -->
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+   <script src="https://cdn.datatables.net/searchpanes/1.2.1/js/dataTables.searchPanes.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.2/js/dataTables.select.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+<!-- Contenidon de  todas las librresias javascript para datatables buttons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.1.1/js/buttons.html5.styles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/datatables-buttons-excel-styles@1.1.1/js/buttons.html5.styles.templates.min.js"></script>
+<!-- Contenidon de  todas las librresias javascript para highcharts -->
+ <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+        {% block javascripts %}
+      <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/datatables.js') }}"></script>    
+           <script> 
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script> 
+        {% endblock %}
+    </body>
+</html>

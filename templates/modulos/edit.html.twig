@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Modulos{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>CAMBIAR ESTADO</h1>
+
+    {{ include('modulos/_form.html.twig', {'button_label': 'Actualizar'}) }}
+
+    <a href="{{ path('modulos_index') }}">Regresar a la Lista</a>
+
+</div>
+{% endblock %}

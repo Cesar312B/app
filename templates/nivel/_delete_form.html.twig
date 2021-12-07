@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('nivel_delete', {'id': nivel.id}) }}" onsubmit="return confirm('¿Está seguro de eliminar este regitro?. Si elimina este registro se borrará toda la información relacionada a este nivel');">
+    <input type="hidden" name="_method" value="Eliminar">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ nivel.id) }}">
+    <button class="btn btn-danger">Eliminar</button>
+</form>

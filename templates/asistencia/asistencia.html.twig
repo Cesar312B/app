@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estudiante{% endblock %}
+
+{% block body %}
+   
+   <div class="card-body p-5 bg-white rounded">
+
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                    <div class="table-responsive">
+            
+            <table class="table">
+        <tbody>
+        <tr>
+        <h5>ESTUDIANTE</h5>
+                <th>CÉDULA</th>
+                <td>{{ ast.Cedula }}</td>
+            </tr>
+            <tr>
+                <th>NOMBRE</th>
+                <td>{{ ast.Nombre }} {{ ast.Apellido }}</td>
+            </tr>
+              
+
+              <tr>
+                <th>FOTO</th>
+                <td><img src="{{ asset('uploads/'~ast.Foto) }}" alt="..." width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm"></td>
+            </tr>
+             <tr>
+                <th>MATERIA</th>
+                <td>{{ materia.Materia }} {{par.grupo.Nombre}}</td>
+            </tr>
+
+             <tr>
+              {% for a in atp %}
+                <th>Falta</th>
+                <td>{{ a.Faltas |number_format(2, '.', '.') }} %</td>
+                 {% endfor %}
+            </tr>
+        </tbody>
+    </table> 
+   </div>
+
+
+   
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+       
+        
+{{ form_start(form) }}
+    {{ form_widget(form.Asistencia,{
+      attr: {
+    'placeholder': 'Numero horas' } }) }}
+      {{ form_row(form.periodo) }}
+      {{ form_row(form.Fecha) }}
+     
+     
+    
+    <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+{{ form_end(form) }}
+        </div>
+       
+
+       
+    </div>
+
+    <a href="{{ path('studintes_paralelo', {id: par.id, m: materia.id}) }}">ESTUDIANTES</a>
+</div>
+   
+{% endblock %}

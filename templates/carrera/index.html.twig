@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Carrera{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>CARRERAS</h1>
+
+    <table   class="table">
+        <thead>
+            <tr>
+                <th>CARRERA</th>
+                <th>ÁREA</th>
+                  <th>TIPO DE CARRERA</th>
+                    <th>MODALIDAD</th>
+                     <th>TÍTULO DE LA CARRERA</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carrera in carreras %}
+            <tr> 
+                <td>{{ carrera.Carrera }}</td>
+                <td>{{ carrera.Area }}</td>
+                 <td>{{ carrera.tipocarrera }}</td>
+                  <td>{{ carrera.modalidadcarrera }}</td>
+                   <td>{{ carrera.titulocarrera }}</td>
+                 
+                <td>
+                    <a href="{{ path('carrera_edit', {'id': carrera.id}) }}">Editar</a> 
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('carrera_new') }}">Registrar nueva carrera</a>
+    </div>
+{% endblock %}
+

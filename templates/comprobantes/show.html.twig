@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comprobantes{% endblock %}
+
+{% block body %}
+    <h1>Comprobantes</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comprobante.id }}</td>
+            </tr>
+            <tr>
+                <th>Archivo</th>
+                <td>{{ comprobante.archivo }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ comprobante.fecha ? comprobante.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('comprobantes_index') }}">Regresar</a>
+
+    <a href="{{ path('comprobantes_edit', {'id': comprobante.id}) }}">Editar</a>
+
+    {{ include('comprobantes/_delete_form.html.twig') }}
+{% endblock %}

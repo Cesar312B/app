@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nivel{% endblock %}
+
+{% block body %}
+    <h1>NIVEL</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ nivel.id }}</td>
+            </tr>
+            <tr>
+                <th>NIVEL</th>
+                <td>{{ nivel.Nivel }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('nivel_index') }}">Regresar</a>
+
+    <a href="{{ path('nivel_edit', {'id': nivel.id}) }}">Editar</a>
+
+    {{ include('nivel/_delete_form.html.twig') }}
+{% endblock %}

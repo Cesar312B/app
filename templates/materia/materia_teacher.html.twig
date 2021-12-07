@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notas index{% endblock %}
+
+{% block body %}
+   
+ <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>MATERIA</th>
+                <th>CARRERA</th>
+                 <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nota in notas %}
+            <tr>
+                <td>{{ nota.id }}</td>
+                <td>{{ nota.Materia}}</td>
+                <td>{{ nota.Carrera }}</td>
+                 <td>
+                  <a href="{{ path('materia_stundet3', {'id': nota.id}) }}">NOTAS</a></br>
+                   <a href="{{ path('avance_programatico_show', {'id': nota.id}) }}">AVANCE_PROGRAMÁTICO</a></br>
+                 </td>
+             
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+  
+
+{% endblock %}

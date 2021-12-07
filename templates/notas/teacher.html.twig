@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notas index{% endblock %}
+
+{% block body %}
+
+
+
+        <!-- Accordion item 1 -->
+        <div class="card">
+        
+
+        <!-- Accordion item 2 -->
+        <div class="card">
+          <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Registro de Asistencia </a></h6>
+          </div>
+          <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5">
+               <div class="table-responsive">
+        <table id="example5" class="table table-striped table-bordered" >
+        <thead>
+               <tr>
+               <th>ID</th>
+               
+                <th>NOMBRE</th>
+                <th>MATERIA</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+         <tbody>
+        {% for nota in notas %}
+            <tr>
+             <td>{{ nota.IDT }}</td>
+            
+                <td>{{ nota.Nombre }} {{ nota.Apellido }}</td>
+                <td>{{ nota.Materia }}</td>
+                <td>
+                   
+                    <a href="{{ path('ast', {'id': nota.IDT}) }}">ASISTENCIA</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion item 3 -->
+        <div class="card">
+          <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Collapsible Group Item #3</a></h6>
+          </div>
+          <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5">
+              <p class="font-weight-light m-0">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <div class="media d-flex align-items-center">
+    <img src="{{ asset('uploads/'~student.Foto) }}" alt="..." width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm">
+      <div class="media-body">
+      <h7 class="m-0">{{  student.Cedula }}</h7>  <br/>
+       <h7 class="m-0">{{ student.Nombre }} {{ student.Apellido }}</h7> <br/>
+ 
+        <!-- For Demo Purpose -->
+    
+          <div class="table-responsive">
+          <table>
+        <thead>
+            <tr>
+               
+                <th>MATERIAS</th>
+                 <th>FALTAS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for t in faltas2 %}
+            <tr>
+             
+               <td>{{ t.Materia }} {{ t.Paralelo}}: </td>
+                <td>{{ t.Faltas |number_format(2, '.', '.')}} %</td>  
+            </tr>
+             {% else %}
+            <tr>
+                <td colspan="18">NO HAY FALTAS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>   
+          
+   </div>
+
+      </div>
+     
+     
+    </div>
+    </br>
+
+    
+       </br>
+   
+
+ <div class="table-responsive">
+        <table id="example1" style="width:100%" class"content-table table-sm">
+        <thead>
+            <tr>
+                <th>MATERIA</th>
+                 <th>PARALELO</th>
+                <th>FALTA</th>
+                <th>FECHA</th>
+                <th>ACCIONES</th>
+               
+            </tr>
+        </thead>
+        <tbody id="asistencias">
+        {% for n in faltas %}
+            <tr>
+               <td>{{ n.Materia }}</td>
+               <td>{{ n.Paralelo}}</td>
+                <td>{{ n.Asistencia}}</td>
+                 <td>{{ n.Fecha ? n.Fecha|date('Y-m-d H:i:s') : '' }}</td>
+               <td  >
+                 <a href="#" class="btn btn-danger delete-article" data-id="{{n.id}}">Eliminar</a>
+                </td>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO HAY FALTAS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      </div>
+    <a href="{{ path('student_index') }}">Regresar a la lista</a>
+    </div>
+{% endblock %}
+
+  {% block javascripts %}
+ 
+          <script> 
+  
+const asistencias = document.getElementById('asistencias');
+
+if (asistencias) {
+asistencias.addEventListener('click', e => {
+if (e.target.className === 'btn btn-danger delete-article') {
+  if (confirm('Esta seguro de eliminar?')) {
+     const value = e.target.getAttribute('data-id');
+              let route = "{{ path('delate_asistencia', { id: 'fileId_' }) }}";
+              route = route.replace('fileId_', value);
+
+    fetch(route, {
+      method: 'DELETE'
+    }).then(res => window.location.reload());
+  }
+}
+});
+}
+        </script>
+
+
+
+          <script> 
+          $(document).ready(function() {
+    $('#example1').DataTable({
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+           </script>
+
+
+            <script> 
+               $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+             </script>
+{% endblock %}

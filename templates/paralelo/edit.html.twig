@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Paralelo{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>EDITAR ESTADO DE PARALELO </h1>
+
+    {{materia.Materia}}
+    
+       {% for message in app.flashes('exito') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {{ include('paralelo/_form.html.twig', {'button_label': 'Editar'}) }}
+
+<a href="{{ path('paralelos', {'id': materia.id}) }}">Regresar a la lista de Paralelos</a></br>
+</div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Notas index{% endblock %}
+
+{% block body %}
+  <div class="p-5 bg-white rounded shadow mb-5">     
+    <h5>RECORD ACADÉMICO</h5>
+<div class="table-responsive">  
+<table id="example" class="content-table table-sm" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+              <th>CARRERA</th>
+              <th>MATERIA</th>
+              <th>NIVEL</th>
+              <th>PERIODO</th>
+              <th>PARCIAL 1</th>
+              <th>PARCIAL 2</th>
+              <th>PARCIAL 3</th>
+              <th>TOTAL</th>
+              <th>NOTA SUPLETORIO</th>
+              <th>SUPLETORIO</th>
+              <th>ESTADO</th>
+              
+  
+         
+        </tr>
+    </thead>
+    
+      <tbody>
+        {% for nota in notas %}
+            <tr>
+             <td>{{ nota.Carrera }}</td>
+            <td>{{ nota.Materia }} "{{ nota.Paralelo }}" </td>
+            <td> {{nota.Nivel}}</td>
+               <td>{{ nota.Periodo }}</td>
+               <td>{{ nota.Parcial1 }}  </td>
+               <td>{{ nota.Parcial2  }}  </td>
+               <td>{{ nota.Parcial3  }}  </td>
+                  <td>{{ nota.Total}}</td>
+                <td>{{ nota.nota_supletorio}}</td>
+                <td>{{ nota.Supletorio}}</td>
+                <td>{{ nota.Estado}}</td>
+              
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+ 
+</table>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+
+         <script> 
+
+ $(document).ready(function (){
+    var table = $('#example').DataTable({
+        language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+
+        
+           'rowCallback': function(row, data, index){
+    if(data[7]>= 21){
+        $(row).find('td:eq(7)').css('color', 'green');
+    }else if(data[7]< 21){
+      $(row).find('td:eq(7)').css('color', 'red');
+    }
+
+    if(data[9]>= 21){
+        $(row).find('td:eq(9)').css('color', 'green');
+    }else if(data[9]< 21){
+        $(row).find('td:eq(9)').css('color', 'red');
+    }
+  }
+    });
+
+ 
+  
+
+
+    
+});
+
+</script>
+          
+        {% endblock %}
+
+

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralelo index{% endblock %}
+
+{% block body %}
+    <h1>PARALELO</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+            
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paralelo in paralelos %}
+            <tr>
+                <td>{{ paralelo.id }}</td>
+            
+                <td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO EXISTE REGISTROS </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

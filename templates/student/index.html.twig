@@ -1,0 +1,622 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estudiante{% endblock %}
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+
+ <a href="{{ path('new_student') }}">+ CREAR NUEVO ESTUDIANTE</a>
+      <div class="table-responsive">
+            <table id="example" class="content-table table-sm dt-responsive nowrap">
+              <thead>
+                <tr>
+                <th>Nº</th>
+                <th>DOCUMENTO DE INDENTIFICACIÓN</th>
+                <th>NOMBRE</th>
+                <th>FOTO</th>
+                <th>PAÍS</th>
+                <th>PROVINCIA</th>
+                <th>TELÉFONO</th>
+                 <th>TIPO DE IDENTIFICACIÓN</th>
+                  <th>SEXO</th>
+                  <th>CORREO</th>
+                  <th>Nº_CONVENCIONAL</th>
+                  <th>DiRECCIÓN</th>
+                   <th>CÓDIGO_POSTAL</th>
+                   <th>CONTACTO</th>
+                    <th>PARENTESCO</th>
+                  <th>Nº_CONTACTO</th>
+                     <th>ETNIA</th>
+                  <th>DESCRIPCIÓN</th>
+                  <th>IDIOMA_ANCESTRAL</th>
+                  <th>IDIOMA_DESCRIPCIÓN</th>
+                  <th>FECHA_NACIMIENTO</th>
+                  <th>TIPO_SANGRE</th>
+                  <th>CATEGORÍA_MIGRATORIA</th>
+                  <th>PAÍS_RESIDENCIA</th>
+                  <th>PROVINCIA_RESIDENCIA</th>
+                  <th>ESTADO_CIVIL</th></th>
+                  <th>DISCAPACIDAD</th>
+                  <th>Nº_CONADIS</th>
+                  <th>PORCENTAJE_DISCAPACIDAD</th>
+                  <th>TiPO_DISCAPACIDAD</th>
+                  <th>TIPO_COLEGIO</th>
+                   <th>TIPO_BACHILLERATO</th>
+                    <th>TÍTULO_SUPERIOR</th>
+                     <th>TÍTULO_ESPECÍFICO</th>
+                     <th>MOTIVO_INGRESOS</th>
+                     <th>FORCIÓN_PADRE</th>
+                     <th>FORMACIÓN_MADRE</th>
+                     <th>Nº_MIEMBRO_FAMILIA</th>
+                     <th>BONO_HUMANO</th>
+                     <th>INGRESOS_HOGAR</th>
+                      <th>REPETIDO_MATERIA</th>
+                      <th>PÉRDIDA_GRATUIDAD</th>
+                       <th>PRÁCTICAS_PREPROFESIONALES</th>
+                       <th>Nº_HORAS_PRÁCTICA</th>
+                       <th>TIPO_INSTITUCIÓN_PRÁCTICAS</th>
+                        <th>SECTOR_ECONÓMICO_PRÁCTICAS</th>
+                        <th>PRÁCTICAS_INSTITUTO</th>
+                        <th>ALCANCE_PROYECTO_VINCULACIÓN</th>
+                        <th>ESTADO_LABORAL</th>
+                        <th>SECTOR_ECONÓMICO_LABORAL</th>
+                <th>FECHA_INGRESO</th>
+                <th>BLOQUEADO</th>
+                <th>ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for student in students %}
+            <tr>
+                <td>{{ student.id }}</td>
+                <td>{{ student.username }}</td>
+                <td>{{ student.Nombre }} {{ student.Apellido }}</td>
+                <td> <img src="{{ asset('uploads/'~student.Foto) }}" alt="" width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm"></td>
+                <td>{{ student.Pais }}</td>
+                <td>{{ student.Provincia }}</td>
+                <td>{{ student.Telefono }}</td>
+                 <td>{{ student.tipoidentificacion }}</td>
+                   <td>{{ student.sexo }}</td>
+                   <td>{{ student.correo }}</td>
+                   <td>{{ student.nconvencional }}</td>
+                    <td>{{ student.direccion }}</td>
+                    <td>{{ student.codigopostal }}</td>
+                    <td>{{ student.Contacto }}</td>
+                    <td>{{ student.Parentesco }}</td>
+                    <td>{{ student.ncontacto}}</td>
+                    <td>{{ student.etnia}}</td>
+                    <td>{{ student.descripcion}}</td>
+                    <td>{{ student.idiomaancestral}}</td>
+                    <td>{{ student.idiomadescripcion}}</td>
+                    <td>{{ student.fechanacimiento ? student.fechanacimiento|date('Y-m-d') : ''}}</td>
+                    <td>{{ student.tiposangre}}</td>
+                     <td>{{ student.categoriamogratoria}}</td>
+                     <td>{{ student.Paisridencia}}</td>
+                     <td>{{ student.provinciarecidencia}}</td>
+                      <td>{{ student.estadocivil}}</td>
+                      <td>{{ student.discapacidad}}</td>
+                      <td>{{ student.nconadis}}</td>
+                      <td>{{ student.porcentajediscapacidad}}</td>
+                      <td>{{ student.tipodiscapacidad}}</td>
+                       <td>{{ student.tipocolegio}}</td>
+                       <td>{{ student.tipobachillerato}}</td>
+                        <td>{{ student.titulosuperior}}</td>
+                        <td>{{ student.tituloespecifico}}</td>
+                        <td>{{ student.motivoingresos}}</td>
+                        <td>{{ student.formacionpadre}}</td>
+                         <td>{{ student.formacionmadre}}</td>
+                         <td>{{ student.nmiembrosfamilia}}</td>
+                         <td>{{ student.bonohumano}}</td>
+                         <td>{{ student.ingresoshogar}}</td>
+                          <td>{{ student.repetdomateria}}</td>
+                          <td>{{ student.perdidagratuidad}}</td>
+                          <td>{{ student.practicaspreprofesionales}}</td>
+                          <td>{{ student.nhorapracticas}}</td>
+                          <td>{{ student.tipoinstitucionpracticas}}</td>
+                          <td>{{ student.sectorecomomicopracticas}}</td>
+                           <td>{{ student.practicainstituto}}</td>
+                           <td>{{ student.alcanceproyectovinculacion}}</td>
+                            <td>{{ student.estdolaboral}}</td>
+                            <td>{{ student.sectoreconomicolaboral}}</td>
+                <td>{{ student.FechaIngreso ? student.FechaIngreso|date('Y-m-d') : '' }}</td>
+                <td>{{ student.isActive ? 'No' : 'Si' }}</td>
+                <td>
+                     {% set var = "Activado" %}  
+                    {% if modulo.estado == var %}
+                    <a href="{{ path('student_show', {'id': student.id}) }}">Matricular</a> 
+                    {% endif %}
+                    <a href="{{ path('asistencia_show', {'id': student.id}) }}">Asistencia</a>
+                    <a href="{{ path('student_edit', {'id': student.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="16">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+            </div>
+           
+        </div>
+   
+{% endblock %}
+
+{% block javascripts %}
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+          $(document).ready(function() {
+    $('#example').DataTable({
+
+       responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                
+                    header: function ( row ) {
+                        var data = row.data();
+                        return data[52];
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+            }
+        },
+        dom: 'Bfrtip',
+
+          buttons: [
+         
+            {
+                extend: 'excelHtml5',
+                title: 'Lista general de Estudiantes',
+                filename:'Listas Generales Estudiantes',
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50] 
+                    }, 
+
+                excelStyles: {                
+                    "template": [
+                        "header_blue",
+                        "title_little"
+                    ] 
+                    
+                },
+
+            },
+
+
+            {
+                extend: 'copyHtml5',
+                title: 'Lista general de Estudiantes',
+                text: "Copiar",
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50] 
+                    }, 
+            },
+            
+            
+            {
+                
+            extend: 'searchPanes',
+            config: {
+                cascadePanes: true
+            }
+              }
+            
+            
+            
+              
+        ],
+        
+     
+
+        columnDefs: [
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [0]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [1]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [2]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [3]
+            },
+        
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [4]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [5]
+            },
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [6]
+            },
+
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [7]
+            },
+
+              {
+                searchPanes: {
+                    show: true
+                },
+                targets: [8]
+            },
+
+
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [9]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [10]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [11]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [12]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [13]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [14]
+            },
+
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [15]
+            },
+
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [16]
+            },
+
+            
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [17]
+            },
+
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [18]
+            },
+
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [19]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [20]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [21]
+            },
+
+              {
+                searchPanes: {
+                    show: true
+                },
+                targets: [22]
+            },
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [23]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [24]
+            },
+
+               {
+                searchPanes: {
+                    show: false
+                },
+                targets: [25]
+            },
+
+            
+               {
+                searchPanes: {
+                    show: false
+                },
+                targets: [26]
+            },
+
+            
+               {
+                searchPanes: {
+                    show: false
+                },
+                targets: [27]
+            },
+
+            
+          {
+                searchPanes: {
+                    show: false
+                },
+                targets: [28]
+            },
+
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [29]
+            },
+
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [30]
+            },
+
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [31]
+            },
+
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [32]
+            },
+
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [33]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [34]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [35]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [36]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [37]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [38]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [39]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [40]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [41]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [42]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [43]
+            },
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [44]
+            },
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [45]
+            },
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [46]
+            },
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [47]
+            },
+            {
+                searchPanes: {
+                    show: true
+                },
+                targets: [48]
+            },
+
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [49]
+            },
+
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [50]
+            },
+
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [51]
+            },
+           
+        ],
+        
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+              searchPanes: {
+                clearMessage: 'Limpiar panel',
+                 collapse: {0: 'Filtros', _: 'Filtros (%d)'},
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun filtro seleccionado',
+                    1: 'Filtros seleccionado - %d', 
+                   
+                },
+            },
+            
+              buttons: {
+                copyTitle: 'Agregado al portapapeles',
+                copyKeys: 'Seguir adelante <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> para copiar los datos de la tabla a su portapapeles. <br><br>Para cancelar, haga clic en este mensaje o presione Esc.',
+                copySuccess: {
+                    _: '%d datos copiados',
+                    1: '1 ligne copiée'
+                }
+            }
+
+        },
+         
+    });
+});
+   
+  
+        </script>
+    
+
+
+
+ <script>     
+   $('.dropdown-toggle').dropdown();
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+  
+
+   {% endblock %}
+

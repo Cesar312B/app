@@ -1,0 +1,91 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Comprobantes {% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+{% set var = "Activado" %}  
+{% if modulo.estado == var %}
+    <h1>Comprobantes</h1>
+    {{ include('comprobantes/_form.html.twig') }}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Archivo</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comprobante in comprobantes %}
+            <tr>
+               
+    <td>
+
+        <a href="#" data-toggle="modal"data-target=".bd-example{{comprobante.id}}-modal-lg"  >Comprobante</a>
+                 <div class="modal fade bd-example{{comprobante.id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabe2" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+               </button>
+         <div class="modal-content">
+
+        <div>
+      <object
+        data="{{ asset('uploads/comprobante/'~comprobante.archivo) }}"
+        type="application/pdf"
+        width="800"
+        height="800"
+      >
+
+        <iframe
+          src="{{ asset('uploads/comprobante/'~comprobante.archivo) }}"
+          width=100%
+          height=!00%
+        >
+        </iframe>
+
+      </object>
+    </div>
+
+    </div>
+  </div>
+</div>
+                </td>
+                <td>{{comprobante.student.Cedula}}</td>
+                <td>{{ comprobante.fecha ? comprobante.fecha|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('comprobantes_edit', {'id': comprobante.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">No hay registros</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+    {% else %}
+<h4>No esta disponible</h4>
+      {% endif %}
+
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>     
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+ {% endblock %}
+

@@ -1,0 +1,16 @@
+
+
+{% block body %}
+
+   
+        {% for periodo in periodos %}
+                {{ periodo.Periodo }}  
+        {% else %}
+         
+                NO EXISTE REGISTROS
+        {% endfor %}
+
+
+{% endblock %}
+
+

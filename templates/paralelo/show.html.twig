@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paralelo{% endblock %}
+
+{% block body %}
+    <h1>PARALELO</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ paralelo.id }}</td>
+            </tr>
+            <tr>
+                <th>NOMBRE</th>
+                <td>{{ paralelo.Nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('paralelo_index') }}">Regresar</a>
+
+
+    {{ include('paralelo/_delete_form.html.twig') }}
+{% endblock %}

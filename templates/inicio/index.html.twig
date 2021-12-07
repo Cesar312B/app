@@ -1,0 +1,135 @@
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, user-scalable=no" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <title>{% block title %}ISTAH{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/estilo3.css') }}">
+        {% endblock %}
+    </head> 
+
+<header class="text-center">
+
+
+<body>
+<div class="container py-5">
+ 
+  <div class="container">
+  <img src="{{ asset('image/logo.png') }}" width="100" class="mx-auto d-block  img-thumbnail  shadow-sm"> </br>
+</div>
+    <h1 class="text-white" >INSTITUTO SUPERIOR TECNOLÓGICO ALFONSO HERRERA</h1></br>
+
+    
+    <div id="carouselExampleFade" class="carousel slide carousel-fade img-thumbnail " data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+
+     <img src="{{ asset('image/foto1.png') }}" class="d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="{{ asset('image/arce.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+
+    <div class="carousel-item">
+      <img src="{{ asset('image/descarga.jpg') }}" class="d-block w-100" alt="...">
+    </div>
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  
+
+
+
+
+</br>
+</br> 
+<!--opciones  ===================================--> 
+<div class="teachers page_section">
+ <div class="row py-3">
+            <div class="container">
+                <div class="row">
+                   
+                           <div class="col align-self-center">
+                          
+                         <a href="{{ path('app_login') }}"> <img src="{{asset('image/emp.png')}}" width="100" class="rounded-circle img-thumbnail  shadow-sm"></a>
+                           <figcaption class="p-4 card-img-bottom">
+                           <h2 class="h5 text-white">INGRESO ADMINISTRATIVO/DOCENTE</h2>
+                          
+                                </figcaption>
+                                  </div>
+                    
+                            <div class="col align-self-center">
+                                
+                              <a href="{{ path('app') }}">  <img src="{{asset('image/student.png')}}" width="100" class="rounded-circle img-thumbnail shadow-sm" ></a> 
+                                   <figcaption class="p-4 card-img-bottom">
+                                        <h2 class="h5 text-white">INGRESO ESTUDIANTES</h2>
+                                           
+                                          </figcaption>
+                                          
+                            </div>
+                        
+                    
+                </div>  
+        </div>
+   </div>
+</div>
+
+
+  
+      <!--Mision y vision  ===================================--> 
+     
+  <div class="card-body p-5 bg-white rounded shadow-sm">    
+<div class="py-1">
+        <h2 class="h4 font-italic mb-4  text-black">MISIÓN </h2>
+        <div class="row">
+            <p class="font-italic text-center text-black"> El Instituto Superior Tecnológico  "Alfonso Herrera" es una entidad de educación  superior orientada a formar profesionales competentes a Nivel Tecnológico Superior, sustentada en el principio filosófico "aprender haciendo" siguiendo paradigmas y modelos pedagógicos que fortalecen la innovación científica-tecnológica con enfoque humanístico, ética profesional, a través de una oferta educativa de calidad encaminada a aprender y desarrollar proyectos innovadores en beneficio de la sociedad.</p>
+        </div>
+        <h2 class="h4 font-italic mb-4 text-black">VISIÓN</h2>
+        <div class="row">
+        <p class="font-italic text-center text-black">El Instituto Superior  Tecnológico "Alfonso Herrera" tiene como visión ser una institución de educación superior consolidada en la profesionalización académica con procesos didácticos integrados al desarrollo humano,social,científico,tecnológico,productivo y ambiental, fomentando valores morales, éticos y cívicos, comprometidos con la innovación e invetigación optimizando  la calidad de vida individual, familiar y comunitaria de su entorno local y nacional.</p>
+      </div>
+      </div>
+     </div>
+
+    <!-- Copyrights -->
+ 
+    </body>
+    </div>
+ </header>
+
+ <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+  
+  <div class="text-center p-4" style="background-color: rgba(255, 255, 255 );">
+   INSTITUTO SUPERIOR TECNOLÓGICO ALFONSO HERRERA © Inspired by :
+    <a title="Sofia Paucar ♡" class="text-reset fw-bold"> Sofia Paucar y ソフィア ♡</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+   
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+</html>
+
+
+
+
+

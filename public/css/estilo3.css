@@ -1,0 +1,154 @@
+html {
+  min-height: 100%;
+}
+body {
+  height: 100%;
+  min-height: 110vh;
+  background: #003C88;
+  background: linear-gradient(110deg, #003C88 35%, #B4C563 61%);  
+}
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.caption-1 figcaption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .caption-2 figcaption {
+    width: 80%;
+    position: absolute;
+    bottom: 1rem;
+    left: 10%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .caption-3 figcaption {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(-50%);
+  }
+  
+  
+  
+  /*
+  *
+  * ==========================================
+  * FOR DEMO PURPOSES
+  * ==========================================
+  *
+  */
+  
+  .border-md {
+    border-width: 2px !important;
+  }
+  
+  .separator {
+    border-bottom: 1px dashed rgb(0, 0, 0);
+  }
+  
+  .text-small {
+    font-size: 0.85rem;
+  }
+  * {
+    margin: 0;
+  }
+  html, body {
+    height: 100%;
+  }
+  .wrapper {
+    min-height: calc(100% - 4rem);
+  }
+
+  .megamenu {
+    position: static;
+  }
+  
+  .megamenu .dropdown-menu {
+    background: none;
+    border: none;
+    width: 100%;
+  }
+  
+
+  #button-addon1 {
+    color: #ffc371;
+  }
+  
+  i {
+    color: #ffc371;
+  }
+  
+  .form-control::placeholder {
+    font-size: 0.95rem;
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  .form-control.shadow-0:focus {
+    box-shadow: none;
+  }
+
+ 
+  
+
+
+  
+/*
+*
+* ==========================================
+* Tablas 
+* ==========================================
+*
+*/
+
+
+.content-table {
+  border-collapse: collapse;
+  margin: 3px 0;
+  font-size: 0.80em;
+  font-weight: 480;
+  min-width: 80px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+  background: rgb(38, 128, 5);
+  background: linear-gradient(110deg, rgb(38, 128, 5) 35%, rgb(218, 205, 29) 61%);
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
+
+.content-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #dddddd00 ;
+}
+
+.content-table tbody tr:last-of-type {
+  border-bottom: 2px solid #000000;
+}
+
+.content-table tbody tr.active-row {
+  font-weight: bold;
+  color: #000000;
+}
+
+

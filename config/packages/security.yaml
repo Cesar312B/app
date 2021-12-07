@@ -1,0 +1,50 @@
+security:
+
+   
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        App\Entity\Employed:
+            algorithm: auto
+        App\Entity\Student:
+            algorithm: auto
+
+
+
+    providers:
+        chain_providers:
+            chain:
+                providers: [app_employed_provider, app_student_provider]
+        # used to reload user from session & other features (e.g. switch_user)
+        app_employed_provider:
+            entity:
+                class: App\Entity\Employed
+                property: username
+        app_student_provider:
+            entity:
+                class: App\Entity\Student
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+           
+            anonymous: true
+            lazy: true
+            provider:  chain_providers
+            user_checker: App\Security\UserChecker
+            guard:
+                authenticators:
+                    - App\Security\StudentLoginFormAuthenticator
+                    - App\Security\EmployedFormAuthenticator
+                entry_point: App\Security\EmployedFormAuthenticator
+            logout:
+                path: app_logout
+    
+
+
+    access_control:
+         - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/student_login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/employed_login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }

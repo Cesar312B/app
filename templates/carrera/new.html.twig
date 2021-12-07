@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva carrera{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+
+    <h1>REGISTRAR NUEVA CARRERA</h1>
+
+    {{ include('carrera/_form.html.twig') }}
+
+    <a href="{{ path('carrera_index') }}">Regresar a la lista</a>
+    </div>
+{% endblock %}

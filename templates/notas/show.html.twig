@@ -1,0 +1,218 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Notas{% endblock %}
+
+{% block body %}
+ <div class="p-5 bg-white rounded shadow mb-5"> 
+  <a href="{{ path('notas_student') }}">NOTAS</a> 
+  <h6>{{nota.paralelo.materia.Materia}}--"{{nota.paralelo.grupo.Nombre}}"</h6>
+    <div id="accordionExample" class="accordion shadow">
+
+        <!-- Accordion item 1 -->
+        <div class="card">
+          <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="d-block position-relative text-dark text-uppercase collapsible-link py-2">PARCIAL 1</a></h6>
+          </div>
+          <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+            <div class="card-body p-5">
+             <table class="table">
+        <tbody>
+            <tr>
+               
+               
+                <th>GESTIÓN DE APRENDIZAJE 1</th>
+                 <th>DESCRIPCIÓN:</th>
+                   <td> {{nota.nota1descripcion}}</td>
+                <td>{{ nota.nota1 }} </td>
+                
+              
+            </tr>
+            <tr>
+                  
+                 
+                <th>GESTIÓN DE APRENDIZAJE 2</th>
+                <th>DESCRIPCIÓN:</th>
+                <td> {{nota.nota2descripcion}}</td>
+                <td>{{ nota.nota2 }}</td>
+            </tr>
+            <tr>
+                 
+                
+                <th>GESTIÓN DE APRENDIZAJE 3</th>
+                 <th>DESCRIPCIÓN:</th>
+                  <td> {{nota.nota3descripcion}}</td>
+                <td>{{ nota.nota3 }}</td>
+            </tr>
+            <tr>
+                  
+                
+                <th>GESTIÓN DE APRENDIZAJE 4</th>
+                <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota4descripcion}}</td>
+                <td>{{ nota.nota4 }}</td>
+            </tr>
+            <tr>
+                 
+                 
+                <th>GESTIÓN DE APRENDIZAJE 5</th>
+                 <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota5descripcion}}</td>
+                <td>{{ nota.nota5 }}</td>
+            </tr>
+            <tr>
+                <th>PROMEDIO</th>
+{% set total1 = 0 %}
+        {% set total1 = (nota.nota1 + nota.nota2 + nota.nota3 + nota.nota4 + nota.nota5)/5 %}
+                <td>{{total1}}</td>
+            </tr>
+
+            
+           
+        </tbody>
+
+        
+         
+
+
+    </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion item 2 -->
+        <div class="card">
+          <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Parcial 2</a></h6>
+          </div>
+          <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5">
+             <table class="table">
+        <tbody>
+            <tr>
+              
+             
+                <th>GESTIÓN DE APRENDIZAJE 1</th>
+                <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota6descripcion}}</td>
+                <td>{{ nota.nota6 }}</td>
+            </tr>
+            <tr>
+            
+              
+                <th>GESTIÓN DE APRENDIZAJE  2</th>
+                <th>DESCRIPCIÓN:</th>
+                <td> {{nota.nota7descripcion}}</td>
+                <td>{{ nota.nota7 }}</td>
+            </tr>
+            <tr>
+           
+              
+                <th>GESTIÓN DE APRENDIZAJE 3</th>
+                 <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota8descripcion}}</td>
+                <td>{{ nota.nota8 }}</td>
+            </tr>
+            <tr>
+            
+              
+                <th>GESTIÓN DE APRENDIZAJE  4</th>
+                <th>DESCRIPCIÓN:</th>
+                <td> {{nota.nota9descripcion}}</td>
+                <td>{{ nota.nota9 }}</td>
+            </tr>
+            <tr>
+           
+              
+                <th>GESTIÓN DE APRENDIZAJE  5</th>
+                 <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota10descripcion}}</td>
+                <td>{{ nota.nota10 }}</td>
+            </tr>
+                <tr>
+                <th>PROMEDIO</th>
+{% set total2 = 0 %}
+        {% set total2 = (nota.nota6 + nota.nota7 + nota.nota8 + nota.nota9 + nota.nota10)/5 %}
+                <td>{{total2}}</td>
+            </tr>
+
+           
+        </tbody>
+    </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion item 3 -->
+        <div class="card">
+          <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Parcial 3</a></h6>
+          </div>
+          <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5">
+                 <table class="table">
+        <tbody>
+            <tr>
+            
+              
+                <th>GESTIÓN DE APRENDIZAJE 1</th>
+                <th>DESCRIPCIÓN:</th>
+                <td> {{nota.nota11descripcion}}</td>
+                <td>{{ nota.nota11 }}</td>
+            </tr>
+            <tr>
+            
+             
+                <th>GESTIÓN DE APRENDIZAJE 2</th>
+                <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota12descripcion}}</td>
+                <td>{{ nota.nota12 }}</td>
+            </tr>
+            <tr>
+            
+             
+                <th>GESTIÓN DE APRENDIZAJE 3</th>
+                <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota13descripcion}}</td>
+                <td>{{ nota.nota13 }}</td>
+            </tr>
+            <tr>
+            
+              
+                <th>GESTIÓN DE APRENDIZAJE 4</th>
+                <th>DESCRIPCIÓN:</th>
+                <td> {{nota.nota14descripcion}}</td>
+                <td>{{ nota.nota14 }}</td>
+            </tr>
+            <tr>
+            
+             
+                <th>GESTIÓN DE APRENDIZAJE 5</th>
+                <th>DESCRIPCIÓN:</th>
+                 <td> {{nota.nota15descripcion}}</td>
+                <td>{{ nota.nota15 }}</td>
+            </tr>
+            <tr>
+                <th>PROMEDIO</th>
+{% set total3 = 0 %}
+        {% set total3 = (nota.nota11 + nota.nota12 + nota.nota13 + nota.nota14 + nota.nota15)/5 %}
+                <td>{{total3}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div>
+
+
+
+    
+
+
+
+  
+{% endblock %}

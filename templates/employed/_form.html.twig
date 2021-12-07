@@ -1,0 +1,121 @@
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="{{ asset('image/empt.png') }}" alt="" class="img-fluid mb-3 d-none d-md-block">
+
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+        {{ form_start(form) }}
+            
+                <div class="row">
+                <!-- Email Address -->
+                    <div class="input-group col-lg-12 mb-4">
+                       
+                         {{ form_row(form.Cedula,{
+                              attr: {
+                            'placeholder': 'CÉDULA'
+                               }
+                                 }) }}
+                    </div>
+                       <div class="input-group col-lg-12 mb-4">
+                       
+                         {{ form_row(form.email,{
+                              attr: {
+                            'placeholder': 'E-MAIL'
+                               }
+                                 }) }}
+                    </div>
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_row(form.Nombre,{
+                              attr: {
+                            'placeholder': 'NOMBRES COMPLETOS'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_row(form.Apellido,{
+                              attr: {
+                            'placeholder': 'APELLIDOS'
+                               }
+                                 }) }}
+                    </div>
+
+                       <!-- First Name -->
+                      <div class="input-group col-lg-12 mb-4">
+                       
+                             {{ form_row(form.foto, {
+                              attr: {
+                            'placeholder': 'FOTO DE PERFIL'
+                               }
+                                 }) }}
+                    </div>
+
+
+                    <!-- Last Name -->
+                   <div class="input-group col-lg-12 mb-4">
+                       
+                            {{ form_row(form.Fecha_Ingreso) }}
+                    </div>
+
+                     <div class="input-group col-lg-12 mb-4">
+                       
+                        {{ form_row(form.Contrato) }}
+                    </div>
+                     
+                    <div class="input-group col-lg-12 mb-4">
+                       
+                        {{ form_row(form.Profesion,{
+                              attr: {
+                            'placeholder': 'PROFESIÓN'
+                               }
+                                 }) }}
+                    </div>
+
+                    <div class="input-group col-lg-12 mb-4">
+                      
+                         {{ form_row(form.roles) }}
+                       
+                    </div>
+                       <div class="input-group col-lg-12 mb-4">
+                      
+                         {{ form_widget(form.is_active) }}
+                       
+                    </div>
+
+    
+     
+                     
+              <button class="btn btn-primary">{{ button_label|default('Registrar') }}</button> 
+                      
+                 
+
+                 
+
+                  
+
+
+                  
+
+                   
+
+                
+
+                </div>
+           
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+

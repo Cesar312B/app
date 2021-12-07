@@ -1,0 +1,680 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+{% set var = "Activado" %}  
+{% if modulo.estado == var %}
+
+ <h7>PERIODO ACADÉMICO ACTUAL    {{ include('periodo/periodo_a.html.twig') }} </h7>
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    <div class="modal-content">
+       <table id="example3" class="table">
+        <thead>
+            <tr>
+                <th>ARCHIVO</th>
+                <th>FECHA</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for comprobante in comprobantes %}
+            <tr>
+               
+    <td>
+
+        <a href="#" data-toggle="modal" data-target=".bd-example{{comprobante.id}}-modal-lg"  >COMPROBANTE</a>
+                 <div class="modal fade bd-example{{comprobante.id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabe2" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+               </button>
+         <div class="modal-content">
+
+        <div>
+      <object
+        data="{{ asset('uploads/comprobante/'~comprobante.archivo) }}"
+        type="application/pdf"
+        width="800"
+        height="800"
+      >
+
+        <iframe
+          src="{{ asset('uploads/comprobante/'~comprobante.archivo) }}"
+          width=100%
+          height=!00%
+        >
+        </iframe>
+
+      </object>
+    </div>
+
+    </div>
+  </div>
+</div>
+                </td>
+                <td>{{ comprobante.fecha ? comprobante.fecha|date('Y-m-d') : '' }}</td>
+              
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+      <table  id="example4" class="table">
+        <thead>
+            <tr>
+                <th>ARCHIVO</th>
+                <th>FECHA</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+        {% for solicitud in solicituds %}
+            <tr>
+               
+                <td>
+                  <a href="#" data-toggle="modal" data-target=".bd-example{{solicitud.id}}-modal-lg"  >SOLICITUD</a>
+                 <div class="modal fade bd-example{{solicitud.id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabe2" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+               </button>
+         <div class="modal-content">
+
+        <div>
+      <object
+        data="{{ asset('uploads/solicitud/'~solicitud.archivo) }}"
+        type="application/pdf"
+        width="800"
+        height="800"
+      >
+
+        <iframe
+          src="{{ asset('uploads/solicitud/'~solicitud.archivo) }}"
+          width=100%
+          height=!00%
+        >
+        </iframe>
+
+      </object>
+    </div>
+
+    </div>
+  </div>
+</div>
+</td>
+                <td>{{ solicitud.fecha ? solicitud.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+ 
+
+ 
+
+   <div class="modal fade bd-example4-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabe4" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    <div class="modal-content">
+        <div class="table-responsive">
+              <table id="example" class="content-table table-sm">
+                <thead>
+                 <tr>
+                 <td>CARRERA</td>
+                <td>MATERIA</td>
+                  <td>ESTADO</td>
+                 <td>NIVEL</td>
+                <td>PARALELO</td>
+                <td>PERIODO</td>
+                 <td>PROMEDIO TOTAL</td>
+                <td>NOTA SUPLETORIO</th>
+                <td>TOTAL + SUPLETORIO</td>
+               
+                </tr>
+             </thead>
+             <tbody>
+            
+               {% for n in notas %}
+              <tr>
+                <td>{{ n.Carrera }}</td>
+                <td>{{ n.Materia }}</td>
+                <td>{{ n.Estado }}</td>
+                <td>{{n.Nivel}}</td>
+                <td>{{ n.Paralelo }}</td>
+                <td>{{ n.Periodo }}</td>
+                  {% set div = 0 %}
+                   {% set div = (n.Total)/3 %}
+                <td>{{ div |number_format(2) }} </td>
+                 <td>{{ n.nota_supletorio  }}</td>
+                    {% set div1 = 0 %}
+                   {% set div1 = (n.Supletorio)/3 %}
+                 <td>{{ div1 |number_format(2)  }}</td>
+            
+              </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+          <tfoot>
+         <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+        
+    </tfoot>
+
+
+      
+    </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+ 
+ 
+ 
+  
+
+ 
+  <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+   <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+    <div class="table-responsive">
+              
+      <table class="table">
+        <tbody>
+            <h5>ESTUDIANTES</h5>
+            <tr>
+                <th>CÉDULA</th>
+                <td>{{ student.Cedula }}</td>
+            </tr>
+            <tr>
+                <th>NOMBRE</th>
+                <td>{{ student.Nombre }} {{ student.Apellido }}</td>
+            </tr>
+            
+            <tr>
+                <th>FOTO</th>
+                <td><img src="{{ asset('uploads/'~student.Foto) }}" alt="..." width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm"></td>
+            </tr>
+
+            <tr>
+                <th>DOCUMENTOS</th>
+                <td>
+                <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg" >DOCUMENTOS</a> </br>
+             
+
+              </td> 
+            </tr>
+        </tbody>
+    </table> 
+   </div>
+   </div>
+   
+   
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+        
+        {{ form_start(form) }}
+        
+          <div class="row">
+         <div class="input-group col-lg-6 mb-4">
+                     {{ form_row(form.Periodo) }}   
+                        
+                    </div>
+
+                       <div class="input-group col-lg-6 mb-4">
+                     {{ form_row(form.jornada) }}   
+                        
+                    </div>
+
+                    <div class="input-group col-lg-6 mb-4">
+                     {{ form_row(form.tipo_matricula)}}   
+                        
+                    </div>
+
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                        {{ form_row(form.Estado) }}
+                    </div>
+
+                    <div class="input-group col-lg-6 mb-4">
+                      {{ form_widget(form.carrera) }}
+                        
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        {{ form_widget(form.materia) }}
+                    </div>
+
+                      <div class="input-group col-lg-12 mb-4">
+                      
+                       
+                        {{ form_widget(form.paralelo) }}
+                    </div>
+                    </br>
+        
+                     <button class="btn btn-primary">{{ button_label|default('Guardar') }}</button>
+
+
+                </div>
+           {{ form_end(form) }}
+        
+       
+    </div>
+  </div>
+
+    </br>
+  <a href="#" data-toggle="modal" data-target=".bd-example4-modal-lg" >RECORD ACADÉMICO</a>  </br>
+  <h6>MATERIAS DEL PERIODO ACADÉMICO ACTUAL </h6>
+     <div class="table-responsive">
+ 
+              <table id="example2" class="content-table table-sm">
+           
+                <thead>
+                  
+                <tr>
+                 <th>CARRERA</th>
+                <th>MATERIA</th>
+                <th>NIVEL</th>
+                <th>PARALELO</th>
+                 <th>MODALIDAD</th>
+                 <th>JORNADA</th>
+                <th>TIPO DE MATRÍCULA</th>
+                <th>ESTADO</th>
+                <th>CRÉDITOS</th>
+                <th>ACCIONES</th> 
+                </tr>
+             </thead>
+           
+             <tbody id="articles">
+               {% set sum = 0 %}
+               {% for nota in n %}
+              <tr>
+                <td>{{ nota.Carrera }}</td>
+               <td>{{ nota.Materia }}</td>
+               <td>{{nota.Nivel}}</td>
+               <td>{{ nota.Paralelo }}</td>
+               <td>{{ nota.modalidad_carrera}}</td>
+               <td>{{ nota.jornada}}</td>
+               <td>{{ nota.tipo_matricula}}</td>
+                <td>{{ nota.Estado}}</td>
+                 {% set creditos = 0 %}
+                  {% set creditos = (nota.Duracion)/18 %}
+                <td>{{ creditos  |number_format(0, '.0') }}</td>
+                <td>
+                
+                 <a href="#" class="btn btn-danger delete-article" data-id="{{nota.id}}">Eliminar</a>
+                </td>
+                
+             
+              </tr>
+               {% set sum = sum + creditos  |number_format(0, '.0')   %}
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>   
+        <tfoot>
+        <tr>
+            <td border="0">Total:</td>
+            <td  border="0" >{{sum}}</td>
+        </tr>
+        
+    </tfoot>
+    
+      
+       </table>
+  </div>
+
+
+  
+    {% else %}
+<h4>NO ESTÁ DISPONIBLE</h4>
+      {% endif %}
+
+  </div>
+      
+ 
+
+{% endblock %}
+
+{% block javascripts %}
+
+
+     <script> 
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+             <script >
+         $(document).on('change', '#notas_carrera, #notas_materia', function () {
+  let $field = $(this)
+  let $regionField = $('#notas_carrera')
+  let $form = $field.closest('form')
+  let target = '#' + $field.attr('id').replace('materia', 'paralelo').replace('carrera', 'materia')
+  // Les données à envoyer en Ajax
+  let data = {}
+  data[$regionField.attr('name')] = $regionField.val()
+  data[$field.attr('name')] = $field.val()
+  // On soumet les données
+  $.post($form.attr('action'), data).then(function (data) {
+    // On récupère le nouveau <select>
+    let $input = $(data).find(target)
+    // On remplace notre <select> actuel
+    $(target).replaceWith($input)
+  })
+})
+         </script>
+
+
+
+        
+          <script>
+
+           const articles = document.getElementById('articles');
+
+   if (articles) {
+     articles.addEventListener('click', e => {
+       if (e.target.className === 'btn btn-danger delete-article') {
+         if (confirm('Está seguro que desea eliminar')) {
+            const value = e.target.getAttribute('data-id');
+              let route = "{{ path('delate_nota', { id: 'fileId_' }) }}";
+              route = route.replace('fileId_', value);
+   
+           fetch(route, {
+             method: 'DELETE'
+           }).then(res => window.location.reload());
+         }
+       }
+     });
+   };
+  </script>
+
+
+<script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+      dom: 'Bfrtip Plfrtip',
+      language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+            searchPanes: {
+                clearMessage: 'Limpiar Panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun Filtro Seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            }
+        },
+
+        buttons: [
+
+           {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir(Notas)",
+                footer: true,
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7,8] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                          
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.svg"  style="float:center" width=100% height="80"/> <h5 class="text-center">RECORD ACADEMICO</h5> <h6>Cedula:{{ student.Cedula }}</h6> <h6>Nombre: {{ student.Nombre }} {{ student.Apellido }} </h6>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                         $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                    $(win.document.body).find('th').css('border', '1px solid #000');
+                    $(win.document.body).append('</br></br></br></br></br><h6 class="text-center">_____________________________</h6><h6 class="text-center" ></h6> <h6 class="text-center" >CORDINADOR DE CARRERA</h6>   ');
+
+                }
+            },
+        ],
+
+
+    
+        searchPanes: {
+        panes: [
+            {
+            header: 'Aprobados y Reprobados ',
+            options: [
+                {
+
+                label: 'Aprobados',
+                value: function(rowData, rowIdx){
+            
+                  if(rowData[5] !== '' && rowData[7] !== ''){
+
+                    return rowData[5] >= 7 | rowData[7] >= 7 ;
+
+                    }
+                }
+                },
+                {
+                 label: 'Reprobados',
+
+                value: function(rowData, rowIdx){
+                   
+                  if(rowData[5] !== '' && rowData[7] !== ''){
+
+                          return rowData[5] < 7 && rowData[7] < 7 ;
+                      
+                  }  
+                }
+                }
+                ]
+        }]
+    },
+
+    'rowCallback': function(row, data, index){
+    if(data[5]> 7){
+        $(row).find('td:eq(5)').css('color', 'green');
+    }else if(data[5]< 7){
+      $(row).find('td:eq(5)').css('color', 'red');
+    }
+
+     if(data[7]> 7){
+        $(row).find('td:eq(7)').css('color', 'green');
+    }else if(data[7]< 7){
+        $(row).find('td:eq(7)').css('color', 'red');
+    }
+  } ,   
+  
+   "footerCallback": function(tfoot, data, start, end, display) {
+		var api = this.api();
+    
+    var allT
+
+		for (var i = 6; i < api.columns().count(); i++) {
+			// total column
+			var columnDataTotal = api
+				.column(i)
+				.data();
+			var theColumnTotal = columnDataTotal
+				.reduce(function(a, b) {
+					if (isNaN(a)) {
+						return '';
+					} else {
+						a = parseFloat(a);
+					}
+					if (isNaN(b)) {
+						return '';
+					} else {
+						b = parseFloat(b);
+					}
+					return a + b;
+				}, 0);
+			// view page column
+			var columnData = api
+				.column(i, {
+					page: 'current'
+				})
+				.data();
+			var theColumnPage = columnData
+				.reduce(function(a, b) {
+					if (isNaN(a)) {
+						return '';
+					} else {
+						a = parseFloat(a);
+					}
+					if (isNaN(b)) {
+						return '';
+					} else {
+						b = parseFloat(b);
+					}
+					return a + b;
+				}, 0);
+
+			// Update footer
+			$(api.column(0).footer()).html('Promedio');
+			$(api.column(i).footer()).html(
+				parseFloat(theColumnPage / columnData.count()).toFixed(2) + ' (' + parseFloat(theColumnTotal / columnDataTotal.count()).toFixed(2) + ' Todos)'
+			);
+		}
+	}
+
+  
+    });
+});
+
+        </script>
+
+
+          <script> 
+  
+  $(document).ready(function() {
+    
+    $('#example2').DataTable({
+   
+      'responsive': true,
+      language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+       dom: 'Bfrtip',
+        buttons: [
+         
+             {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir",
+                footer: true,
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5,6,7,8] 
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                          
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="70"/> <h5 class="text-center">ACTA DE MATRICULA</h5>  <h7 >Nombre:{{ student.Nombre }} {{ student.Apellido }} </h7> </br>  <h7> Cedula:{{ student.Cedula }} </h7> </br>   <h7>Acta de Matricula: N-{{student.id}} </h7>  </br>  <h7>Tipo de Periodos:Semestres</h7> </br>  <h7> Sistema de Estudios:Creditos </h7> </br> <h7> Fecha:{{ "now"|date("m/d/Y") }} </h7> </br>  <h7> PERIODO ACADEMICO {% for periodo in periodos %}{{ periodo.Periodo }}  {% else %}NO EXISTE REGISTROS{% endfor %} </h7> </br>'
+                            
+                        );
+                  
+ 
+                      $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit','table-dark' );
+                         $(win.document.body).find('table').css('border', '1px solid #000');
+                     $(win.document.body).find('tr').css('border', '1px solid #000');
+                      $(win.document.body).find('td').css('border', '1px solid #000');
+
+                     $(win.document.body).append('</br></br></br></br></br><h6 class="text-center">_____________________________</h6><h6 class="text-center" >{{ student.Nombre }} {{ student.Apellido }}</h6> <h6 class="text-center" >Estudiante</h6> </br> <img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/PieVertical.jpg"   width=100% height="80"/>  ');
+                }
+            },
+        ],
+    });
+});
+
+        </script>
+
+
+       <script> 
+          $(document).ready(function() {
+    $('#example3').DataTable({
+      "searching": false,
+      "paging": false,
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+        },
+       
+        
+    });
+});
+        </script>
+
+        
+       <script> 
+          $(document).ready(function() {
+    $('#example4').DataTable({
+      "searching": false,
+      "paging": false,
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+        },
+       
+        
+    });
+});
+        </script>
+
+
+             
+        {% endblock %}

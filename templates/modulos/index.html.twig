@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modulos index{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>MÓDULOS</h1>
+
+    <table class="table">
+        <thead>
+            <tr> 
+                <th>NOMBRE</th>
+                <th>ESTADO</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for modulo in modulos %}
+            <tr>
+                <td>{{ modulo.nombre }}</td>
+                <td>{{ modulo.estado }}</td>
+                <td>
+                    <a href="{{ path('modulos_edit', {'id': modulo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

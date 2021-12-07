@@ -1,0 +1,576 @@
+
+
+    <!-- Lined tabs-->
+    <ul id="myTab2" role="tablist" class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center">
+      <li class="nav-item flex-sm-fill">
+        <a id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 active">DATOS BÁSICOS</a>
+      </li>
+       <li class="nav-item flex-sm-fill">
+        <a id="contact3-tab" data-toggle="tab" href="#contact3" role="tab" aria-controls="contact3" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0">DISCAPACIDAD Y ESTUDIOS ANTERIORES</a>
+      </li>
+      <li class="nav-item flex-sm-fill">
+        <a id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false" class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0">SITUACIÓN ECONÓMICA/ ESTATUS MIGRATORIO</a>
+      </li>
+      <li class="nav-item flex-sm-fill">
+        <a id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false" class="nav-link text-uppercase font-weight-bold rounded-0">VINCULACIÓN</a>
+      </li>
+     
+    </ul>
+     {{ form_start(form) }}
+    <div id="myTab2Content" class="tab-content">
+      <div id="home2" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
+         <div class="row">
+                <!-- Email Address -->
+
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.tipo_identificacion,{
+                              attr: {
+                            'placeholder': 'TIPO INDENTIFICACIÓN'
+                               }
+                                 }) }}
+                    </div>
+ <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_row(form.Cedula,{
+                              attr: {
+                            'placeholder': 'N-DOCUMENTO DE IDENTIFICACIÓN'
+                               }
+                                 }) }}
+              </div>
+
+
+             
+
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.Nombre,{
+                              attr: {
+                            'placeholder': 'NOMBRES COMPLETOS'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.Apellido,{
+                              attr: {
+                            'placeholder': 'APELLIDOS'
+                               }
+                                 }) }}
+                    </div>
+
+
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.sexo,{
+                              attr: {
+                            'placeholder': 'SEXO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.correo,{
+                              attr: {
+                            'placeholder': 'CORREO-ELECTRÓNICO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                       <div class="input-group col-lg-6 mb-4">
+                      {{ form_widget(form.Telefono,{
+                              attr: {
+                            'placeholder': 'NÚMERO DE TELÉFONO'
+                               }
+                                 }) }}
+                        {{ form_widget(form.n_convencional,{
+                              attr: {
+                            'placeholder': 'NÚMERO CONVENCIONAL'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.direccion,{
+                              attr: {
+                            'placeholder': 'DIRECCIÓN'
+                               }
+                                 }
+                     
+                     ) }}
+                        {{ form_widget(form.codigo_postal,{
+                              attr: {
+                            'placeholder': 'CÓDIGO POSTAL'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+
+                      <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.contacto,{
+                              attr: {
+                            'placeholder': 'CONTACTO'
+                               }
+                                 }
+                     
+                     ) }}
+                        {{ form_widget(form.parentesco,{
+                              attr: {
+                            'placeholder': 'PARENTESCO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+                      <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.n_contacto,{
+                              attr: {
+                            'placeholder': 'NÚMERO CONTACTO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+
+
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.etnia,{
+                              attr: {
+                            'placeholder': 'ETNIA'
+                               }
+                                 }
+                     
+                     ) }}
+                        {{ form_widget(form.descripcion,{
+                              attr: {
+                            'placeholder': 'DESCRIPCIÓN'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.idioma_ancestral,{
+                              attr: {
+                            'placeholder': 'IDIOMA ANCESTRAL'
+                               }
+                                 }
+                     
+                     ) }}
+                        {{ form_widget(form.idioma_descripcion,{
+                              attr: {
+                            'placeholder': 'DESCRIPCIÓN DEL IDIOMA ANCESTRAL'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+
+                    
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.tipo_sangre,{
+                              attr: {
+                            'placeholder': 'TIPO DE SANGRE'
+                               }
+                                 }
+                     
+                     ) }} 
+                    </div>
+                    
+                        <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.estado_civil,{
+                              attr: {
+                            'placeholder': 'ESTADO CIVIL'
+                               }
+                                 }
+                     
+                     ) }} 
+                    </div>
+
+
+
+
+  
+
+                       <!-- First Name -->
+                  <div class="input-group col-lg-12 mb-4">
+                      
+                       {{ form_widget(form.Pais) }} 
+                       {{ form_widget(form.Provincia) }}  
+                                 
+            
+                    </div>
+ 
+                    <!-- Last Name -->
+                   <div class="input-group col-lg-6 mb-4">
+                       
+                            {{ form_row(form.Fecha_Ingreso) }}
+
+                            {{ form_row(form.fecha_nacimiento) }}
+                    </div>
+
+                     <div class="input-group col-lg-6 mb-4">
+                       
+                        {{ form_row(form.Financiamiento) }}</br>
+              
+                        
+                    </div>
+
+                           <div class="input-group col-lg-6 mb-4">
+                       
+                        {{ form_widget(form.repetdo_materia, {
+                              attr: {
+                            'placeholder': 'SI HA REPETIDO MATERIA '
+                               }
+                                 }) }}
+                                 </br>
+                                  {{ form_widget(form.perdida_gratuidad, {
+                              attr: {
+                            'placeholder': 'SI HA PERDIDO LA GRATUIDAD '
+                               }
+                                 }) }}
+                       
+                       
+                        
+                    </div>
+
+
+                    <div class="input-group col-lg-12 mb-4">
+                      
+                         {{ form_widget(form.is_active) }}
+                       
+                    </div>
+
+      </div>
+      </div>
+
+       <div id="contact3" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
+        <div class="row">
+                <!-- Email Address -->
+
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.discapacidad,{
+                              attr: {
+                            'placeholder': 'DISCAPACIDAD'
+                               }
+                                 }) }}
+                    </div>
+                    
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.n_conadis,{
+                              attr: {
+                            'placeholder': 'N-DE CARNET-DISCAPACIDAD'
+                               }
+                                 }) }}
+                    </div>
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.porcentaje_discapacidad,{
+                              attr: {
+                            'placeholder': 'PORCENTAJE DE DISCAPACIDAD'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.tipo_discapacidad,{
+                              attr: {
+                            'placeholder': 'TIPO DE DISCAPACIDAD'
+                               }
+                                 }) }}
+                    </div>
+
+
+
+                       <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.tipo_colegio,{
+                              attr: {
+                            'placeholder': 'TIPO DE COLEGIO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.tipo_bachillerato,{
+                              attr: {
+                            'placeholder': 'TIPO BACHILLERATO'
+                               }
+                                 }) }}
+                    </div>
+
+                    
+
+                       <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.titulo_superior,{
+                              attr: {
+                            'placeholder': 'TÍTULO SUPERIOR'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.titulo_especifico,{
+                              attr: {
+                            'placeholder': 'DESCRIPCIÓN DE TÍTULO'
+                               }
+                                 }) }}
+                    </div>
+
+
+      </div>
+      
+
+
+      </div> 
+
+      <div id="profile2" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
+         <div class="row">
+                <!-- Email Address -->
+
+                 <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.estdo_laboral,{
+                              attr: {
+                            'placeholder': 'ESTADO LABORAL'
+                               }
+                                 }) }}
+                    </div>
+                    
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.sector_economico_laboral,{
+                              attr: {
+                            'placeholder': 'SECTOR ECONÓMICO DE TRABAJO'
+                               }
+                                 }) }}
+                    </div>
+
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.motivo_ingresos,{
+                              attr: {
+                            'placeholder': 'MOTIVO DE INGRESOS'
+                               }
+                                 }) }}
+                    </div>
+                    
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.formacion_padre,{
+                              attr: {
+                            'placeholder': 'FORMACIÓN PADRE'
+                               }
+                                 }) }}
+                    </div>
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.formacion_madre,{
+                              attr: {
+                            'placeholder': 'FORMACIÓN MADRE'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.n_miembrosfamilia,{
+                              attr: {
+                            'placeholder': 'NÚMERO DE FAMILIARES '
+                               }
+                                 }) }}
+                    </div>
+
+
+
+                       <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.bono_humano,{
+                              attr: {
+                            'placeholder': 'BONO DE DESARROLLO HUMANO'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.ingresos_hogar,{
+                              attr: {
+                            'placeholder': 'INGRESOS DEL HOGAR'
+                               }
+                                 }) }}
+                    </div>
+
+
+
+                    
+
+                       <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.categoria_mogratoria,{
+                              attr: {
+                            'placeholder': 'CATEGORÍA MIGRATORIA'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.Pais_ridencia,{
+                              attr: {
+                            'placeholder': 'PAÍS DE RESIDENCIA'
+                               }
+                                 }) }}
+                                   {{ form_widget(form.provincia_recidencia,{
+                              attr: {
+                            'placeholder': 'PROVINCIA DE RESIDENCIA'
+                               }
+                                 }) }}
+                    </div>
+
+          
+
+          
+
+
+      </div>
+
+      </div>
+      <div id="contact2" role="tabpanel" aria-labelledby="contact-tab" class="tab-pane fade px-4 py-5">
+      <div class="row">
+                <!-- Email Address -->
+
+                 <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.practicas_preprofesionales,{
+                              attr: {
+                            'placeholder': 'PRÁCTICAS PREPROFESIONALES'
+                               }
+                                 }) }}
+                    </div>
+                    
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.n_horapracticas,{
+                              attr: {
+                            'placeholder': 'NÚMERO DE HORAS PRÁCTICAS-PREPROFESIONALES'
+                               }
+                                 }) }}
+                    </div>
+
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.tipo_institucion_practicas,{
+                              attr: {
+                            'placeholder': 'TIPO-INSTITUCIÓN'
+                               }
+                                 }) }}
+                    </div>
+                    
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                         {{ form_widget(form.sector_ecomomico_practicas,{
+                              attr: {
+                            'placeholder': 'SECTOR ECONÓMICO DE PRÁCTICAS'
+                               }
+                                 }) }}
+                    </div>
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                       
+                     {{ form_widget(form.practica_instituto,{
+                              attr: {
+                            'placeholder': 'NOMBRE DE LA INSTITUCIÓN'
+                               }
+                                 }
+                     
+                     ) }}
+                    </div>
+
+                  
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mb-4">
+                        
+                          {{ form_widget(form.alcance_proyecto_vinculacion,{
+                              attr: {
+                            'placeholder': 'ALCANCE DEL PROYECTO-VINCULACIÓN'
+                               }
+                                 }) }}
+                    </div>
+
+
+
+                 
+
+         
+          
+
+
+      </div>
+         
+
+      </div> 
+     
+    </div>
+      <button class="btn btn-primary">{{ button_label|default('Registrar') }}</button> 
+     {{ form_end(form) }}
+
+

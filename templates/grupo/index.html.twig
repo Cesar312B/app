@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Grupo index{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>GRUPOS</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NOMBRE</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grupo in grupos %}
+            <tr>
+                <td>{{ grupo.Nombre }}</td>
+                <td>
+                    
+                    <a href="{{ path('grupo_edit', {'id': grupo.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('grupo_new') }}">CREAR NUEVO GRUPO</a>
+    </div>
+{% endblock %}
+

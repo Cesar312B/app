@@ -1,0 +1,431 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notas index{% endblock %}
+
+{% block body %}
+
+  <div class="p-5 bg-white rounded shadow mb-5">     
+     
+         
+      
+       <div class="table-responsive-sm">  
+       
+    <table id="example" class="content-table table-sm dt-responsive nowrap" cellspacing="0" width="100%" >
+        <thead>
+
+               <tr>
+                 <th>CÉDULA</th>
+                 <th>NOMBRE</th>
+                <th>MATERIA</th>
+                 <th>NIVEL</th>
+                <th>PARALELO</th>
+                <th>TOTAL</th>
+                <th >NOTA SUPLETORIO</th>
+                <th>SUPLETORIO</th>
+                <th class="none">CARRERA</th>
+            <th class="none">ESTADO</th>
+
+          
+            </tr>
+        </thead>
+         <tbody>
+        {% for n in notas %}
+            <tr>
+             <td>
+             <i class="bi bi-plus-circle"></i>
+             {{ n.Cedula }}</td>
+                <td>{{ n.Nombre }} {{ n.Apellido }}</td>
+                 <td>{{ n.Materia }} </td>
+                 <td>{{ n.Nivel }} </td>
+                  <td>{{ n.Paralelo }} </td>
+                   <td>{{ n.Total}}</td>
+                  <td>{{ n.nota_supletorio}}</td>  
+                <td>{{ n.Supletorio }}</td>
+                 <td>{{ n.Carrera }}</td>
+                 <td>{{ n.Estado }}</td>
+
+
+                
+            
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+ </div>
+      
+      
+{% endblock %}
+
+
+{% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+
+         <script> 
+
+ $(document).ready(function (){
+   
+    var table = $('#example').DataTable({
+        
+       
+    dom: 'Bfrtip Plfrtip',
+    
+     buttons: [
+           
+            {
+                extend: 'excelHtml5',
+                title: 'Analisis estadistico del profesor {{emp.Nombre}} {{emp.Apellido}}',
+                 filename:'Analisis estadistico del profesor {{emp.Nombre}} {{emp.Apellido}}',
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+
+                excelStyles: {                
+                    "template": [
+                        "green_medium",
+                        "header_blue",
+                        "title_medium"
+                    ] 
+                    
+                },
+
+            },
+            {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir(Notas)",
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="80"/> <h5 class="text-center">ANALISIS ESTADISTICO DEL PROFESOR {{emp.Nombre}} {{emp.Apellido}} </h5>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                            $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                     $(win.document.body).find('th').css('border', '1px solid #000');
+                }
+            },
+
+             {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir(Listas)",
+                exportOptions: {
+                        columns: [0, 1] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="80"/> <h5 class="text-center">ANALISIS ESTADISTICO DEL PROFESOR {{emp.Nombre}} {{emp.Apellido}} </h5>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                            $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                     $(win.document.body).find('th').css('border', '1px solid #000');
+                }
+            },
+
+            {
+                extend: 'copyHtml5',
+                title: 'Estadisticas',
+                text: "Copiar",
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+            },
+
+           {
+                
+                 text: 'Filtros',
+                 className: 'spToggle showPanes',
+                 action: function (e, dt, node, config) {
+                 dt.searchPanes.container().find('.dtsp-searchPanes').slideToggle(200, function () {
+                  $('.spToggle').toggleClass('showPanes', $(this).is(':visible'));
+                      });
+                 },
+            }
+        ],
+
+        searchPanes: {
+             filterChanged: function (count) {
+            $('.spToggle').text(this.i18n('searchPanes.collapse', {0: 'Filtros', _: 'Filtros (%d)'}, count));
+          },
+        panes: [
+            {
+            header: 'Aprobados y Reprobados ',
+            options: [
+                {
+
+                label: 'Aprobados',
+                
+                value: function(rowData, rowIdx){
+                    
+                    return rowData[5] >= 21 | rowData[7] >= 21 ;
+                    
+                }
+                },
+
+              {
+                 label: 'Reprobados',
+
+                 
+                    value: function(rowData, rowIdx){
+                      if(rowData[5] !== null && rowData[7] !== null){
+
+                          return rowData[5] < 21 && rowData[7] < 21 ;
+                      }
+                    
+                }  
+                 
+               
+
+
+                }
+
+
+
+                ]
+        }]
+    },
+  
+     columnDefs: [
+        
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [1]
+            },
+              {
+                searchPanes: {
+                    show: false
+                },
+                targets: [2]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [3]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [5]
+            },
+
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [6]
+            },
+            
+            {
+                searchPanes: {
+                    show: false
+                },
+                targets: [7]
+            },
+            
+            {
+                searchPanes: {
+                    show: true
+                },
+                targets: [8]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [9]
+            },
+               
+        ],
+
+
+         
+     "language": {
+        "sProcessing":     "Procesando...",
+    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sZeroRecords":    "No se encontraron resultados",
+    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+    "sSearch":         "Buscar:",
+    "sInfoThousands":  ",",
+    "sLoadingRecords": "Cargando...",
+    "oPaginate": {
+        "sFirst":    "Primero",
+        "sLast":     "Último",
+        "sNext":     "Siguiente",
+        "sPrevious": "Anterior"
+    },
+    "oAria": {
+        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+    },
+    "buttons": {
+        "copy": "Copiar",
+        "colvis": "Visibilidad"
+    },
+    searchPanes: {
+                clearMessage: 'Limpiar Panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun Filtro Seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            },
+             buttons: {
+                copyTitle: 'Agregado al portapapeles',
+                copyKeys: 'Seguir adelante <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> para copiar los datos de la tabla a su portapapeles. <br><br>Para cancelar, haga clic en este mensaje o presione Esc.',
+                copySuccess: {
+                    _: '%d datos copiados',
+                    1: '1 ligne copiée'
+                }
+            }
+
+     },
+  'responsive': true,
+  'rowCallback': function(row, data, index){
+    if(data[5]>= 21){
+        $(row).find('td:eq(5)').css('color', 'green');
+    }else if(data[5]< 21){
+      $(row).find('td:eq(5)').css('color', 'red');
+    }
+
+    if(data[7]>= 21){
+        $(row).find('td:eq(7)').css('color', 'green');
+    }else if(data[7]< 21){
+        $(row).find('td:eq(7)').css('color', 'red');
+    }
+  }
+
+    });
+
+     $('#example').DataTable().searchPanes.rebuildPane();
+
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Expand row details
+        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Collapse row details
+        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
+    });
+
+var container = $('<div id="container" class="d-flex  shadow-sm" ></div> </br>').insertBefore(table.table().container());
+ 
+    var chart = Highcharts.chart(container[0], {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie',
+        },
+        title: {
+            text: 'Análisis de Notas del ITSA Profesor',
+        },
+           accessibility: {
+             point: {
+             valueSuffix: '%'
+         }
+         },
+
+          plotOptions: {
+             pie: {
+             allowPointSelect: true,
+             cursor: 'pointer',
+               dataLabels: {
+        enabled: true,
+        format: ' {point.name}</b>: {point.percentage:.1f} % </b>',
+         connectorColor: 'silver',
+         distance: +10,
+      }
+    }
+  },
+
+ 
+        series: [
+            {    name: "Nº Estudiantes",
+                 data: chartData(table),
+            },
+        ],
+    });
+
+
+     table.on('draw', function () {
+        chart.series[0].setData(chartData(table));
+    });
+
+    
+
+});
+
+
+function chartData(table) {
+    var counts = {};
+ 
+    // Count the number of entries for each position
+    table
+        .column(2, { search: 'applied' })
+        .data()
+        .each(function (val) {
+            if (counts[val]  ) {
+                counts[val] += 1;
+            } else {
+                counts[val] = 1;
+            }
+        });
+ 
+    // And map it to the format highcharts uses
+    return $.map(counts, function (val, key) {
+        return {
+            name: key,
+            y: val,
+        };
+    });
+}
+
+  
+
+</script>
+
+ 
+
+          
+        {% endblock %}
+

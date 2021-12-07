@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva asistencia{% endblock %}
+
+{% block body %}
+    <h1>Crear nueva asistencia</h1>
+
+    {{ include('asistencia/_form.html.twig') }}
+
+    <a href="{{ path('asistencia_index') }}">Regresar</a>
+{% endblock %}

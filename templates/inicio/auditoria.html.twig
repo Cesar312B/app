@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+
+<table  id="example" class="table">
+<h5>Actividades Tabla Estudiantes</h5>
+        <thead>
+            <tr>
+                <th>EMPLEADO</th>
+                   <th>ROL</th>
+                  <th>ACCIÓN</th>
+                    <th>ESTUDIANTE</th>
+                     <th>CÉDULA</th>
+                     <th>FECHA</th>
+                     
+              
+            </tr>
+        </thead>
+        <tbody>
+        {% for audit in student %}
+            <tr> 
+                <td>{{ audit.employed.Nombre }} {{ audit.employed.Apellido}}</td>
+                <td>{{ audit.employed.roles ? audit.employed.roles|json_encode : '' }}</td>
+                <td>{{ audit.accion }} </td>
+                <td>{{ audit.Nombre }} {{ audit.Apellido }}</td>
+                <td>{{ audit.Cedula}} </td>
+                <td>{{ audit.fecha ? audit.fecha|date('Y-m-d H:i:s') : '' }}</td> 
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</br>
+</br>
+
+<div class="card-body p-5 bg-white rounded">
+
+    <table id="example2" class="table">
+<h5>Actividades Tabla Matricula</h5>
+        <thead>
+            <tr>
+                <th>EMPLEADO</th>
+                  <th>ACCIÓN</th>
+                   <th>ESTUDIANTE</th>
+                    <th>MATERIA</th>
+                    <th>FECHA</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+        {% for a in matricula %}
+            <tr> 
+                <td>{{ a.Nombre }} {{ a.Apellido}}</td>
+                <td>{{ a.accion }}</td>
+                 <td>{{ a.SNombre }} {{ a.SApellido }}</td>
+                  <td>{{ a.Materia }}--"{{ a.Paralelo }}"</td>
+                <td>{{ a.fecha ? a.fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+</script>
+
+ <script> 
+  $(document).ready(function() {
+    $('#example2').DataTable({
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+</script>
+
+
+  
+
+   {% endblock %}

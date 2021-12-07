@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Asistencia{% endblock %}
+
+{% block body %}
+    <h1>Asistencia</h1>
+
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+        <div class="table-responsive">
+            
+            <table class="table">
+        <tbody>
+           
+            <tr>
+                <th>Cédula</th>
+                <td>{{ student.Cedula }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ student.Nombre }} {{ student.Apellido }}</td>
+            </tr>
+            
+            <tr>
+                <th>Foto</th>
+                <td><img src="{{ asset('uploads/'~student.Foto) }}" alt="..." width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm"></td>
+            </tr>
+           
+        </tbody>
+    </table> 
+   </div>
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+       
+
+        </div>
+       
+    </div>
+
+    <a href="{{ path('student_index') }}">Regresar</a>
+
+  
+
+{% endblock %}

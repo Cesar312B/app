@@ -1,0 +1,712 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Estudiante{% endblock %}
+
+{% block body %}
+
+    <div class="p-5 bg-white rounded shadow mb-5">
+      {% if is_granted("ROLE_SUPER_ADMIN")  %}    
+    <div style="float:right">
+   <form method="post" action="{{ path('paralelo_delete', {'id': paralelo.id}) }}" onsubmit="return confirm('¿Esta seguro de borrar este paralelo?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ paralelo.id) }}">
+    <button class="btn btn-danger">Eliminar</button>
+</form>
+</div>
+{% endif %}
+  {% if is_granted("ROLE_SUPER_ADMIN") or is_granted('ROLE_SECRETARIA') %}
+  <a href="{{ path('paralelos', {'id': materias.id}) }}">Regresar a la lista de paralelos</a></br> 
+ 
+{% endif %}
+
+
+{% if is_granted("ROLE_PROFESOR") %} 
+ <div class="col-sm-6" style="float:right" >
+   
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <!-- Accordion -->
+            <div id="accordionExample" class="accordion shadow">
+
+                <!-- Accordion item 1 -->
+                 {% set var1 = "Activado" %}  
+                    {% if parcial1.estado == var1 %}
+                 <div class="card">
+                    <div id="headingOne" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">Parcial #1</button>
+                        </h2>
+                    </div>
+                    <div id="collapseOne" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                        <div class="card-body p-5">
+                        
+                                 {{ form_start(form) }}
+                               {{ form_row(form.file, {
+                                   attr: {
+                              'placeholder': 'Seleccione un archivo'
+                                   }
+                             }) }}
+                           <button class="btn btn-primary">{{ button_label|default('Importar datos') }}</button>
+                             {{ form_end(form) }}
+                            
+                             
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                {% do form.file.setRendered() %}
+                 {% endif %}
+           <!-- End -->
+
+                <!-- Accordion item 2 -->
+                  {% set var2 = "Activado" %}  
+                    {% if parcial2.estado == var2 %}
+                <div class="card">
+                    <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">Parcial #2</button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+                        <div class="card-body p-5">
+                            
+                               {{ form_start(form1) }}
+                              {{ form_row(form1.file1, {
+                                attr: {
+                               'placeholder': 'Seleccione un archivo'
+                                 }
+                                 }) }}
+                          <button class="btn btn-primary">{{ button_label|default('Importar datos') }}</button>
+                         {{ form_end(form1) }}
+                        </div>
+                    </div>
+                </div>
+                 {% else %}
+                {% do form1.file1.setRendered() %}
+                 {% endif %}
+                <!-- End -->
+
+                <!-- Accordion item 3 -->
+                {% set var3 = "Activado" %}  
+                    {% if parcial3.estado == var3 %}
+                <div class="card">
+                    <div id="headingThree" class="card-header bg-white shadow-sm border-0">
+                        <h2 class="mb-0">
+                            <button type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link">Parcial #3</button>
+                        </h2>
+                    </div>
+                    <div id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample" class="collapse">
+                        <div class="card-body p-5">
+                              {{ form_start(form2) }}
+                            {{ form_row(form2.file2, {
+                                attr: {
+                            'placeholder': 'Seleccione un archivo'
+                                }
+                              }) }}
+                          <button class="btn btn-primary">{{ button_label|default('Importar datos') }}</button>
+                   {{ form_end(form2) }}
+                        </div>
+                    </div>
+                </div>
+                  {% else %}
+                {% do form2.file2.setRendered() %}
+                 {% endif %}
+                <!-- End -->
+
+            </div><!-- End -->
+        </div>
+    </div>
+</div>
+
+{% endif %}
+</br>
+    <h6>
+  CARRERA :{{ materias.carrera.Carrera}}
+  </h6>   
+  <h7>
+   MATERIA:{{ materias.Materia }} 
+  
+  </h7></br>
+  <h7>NIVEL:{{ materias.nivel.Nivel }}--"{{paralelo.grupo.Nombre}}"</h7></br>
+   <h7>PROFESOR: {{paralelo.employed.Nombre}} {{paralelo.employed.Apellido}}</h7>
+   </br>
+   <h7>PERIODO ACADÉMICO ACTUAL    {{ include('periodo/periodo_a.html.twig') }} </h7>
+
+    
+</br>
+<div class="table-responsive-sm">  
+<table id="example" class="content-table table-hover" cellspacing="0" width="100%" >
+
+    <thead>
+        <tr>
+            <th>Nº</th>
+            <th>ESTUDIANTE</th>
+            <th >PARCIAL 1</th>
+            <th>PARCIAL 2</th>
+            <th>PARCIAL 3</th>
+            <th>TOTAL</th>
+            <th>NOTA SUPLETORIO</th>
+            <th>SUPLETORIO</th>
+            <th>OBSERVACIONES</th>
+            {% if is_granted("ROLE_PROFESOR") %}     
+            <th>Acciones</th>
+            {% endif %}
+        </tr>
+    </thead>
+    
+    
+      <tbody>
+        {% for n in notas2 %}
+            <tr>
+
+            <td>
+            <i class="bi bi-plus-circle"></i>
+            {{ n.id }}</td>
+             <td>{{ n.Nombre }} {{n.Apellido}}</td>
+             <td> {{ n.Parcial1 }}</td>
+              <td>{{ n.Parcial2  }}</td>
+              <td> {{ n.Parcial3  }} </td>
+                  <td>{{ n.Total }}</td>
+                <td>{{ n.nota_supletorio  }}</td>
+                <td>{{ n.Supletorio}}</td>
+                  <td></td>
+                 
+                 {% if is_granted("ROLE_PROFESOR") %}    
+                 <td>
+               
+    
+  
+        <a  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+          <i class="bi bi-book-fill"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ path('ast', {id:n.AL, p:n.TP , m:n.CD }) }}" style="font-size: 0.8em">ASISTENCIA</a>
+          
+        
+           {% if parcial1.estado == var1 %}
+  <a class="dropdown-item" href="{{ path('parcial1', {id:n.id, p:n.TP , m:n.CD, a:n.AL }) }}" style="font-size: 0.8em"  >PARCIAL 1</a>
+        
+            {% endif %}
+
+             {% if parcial2.estado == var2 %}
+  <a class="dropdown-item" href="{{ path('parcial2', {id:n.id, p:n.TP , m:n.CD, a:n.AL }) }}" style="font-size: 0.8em" >PARCIAL 2</a>
+            {% endif %}
+
+             {% if parcial3.estado == var3 %}
+   <a class="dropdown-item" href="{{ path('parcial3', {id:n.id, p:n.TP , m:n.CD, a:n.AL }) }}" style="font-size: 0.8em">PARCIAL 3</a>
+              {% endif %}
+        </div>
+       
+ 
+    
+                 </td>
+                {% endif %}
+
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+ 
+</table>
+</div>
+</div>
+
+
+   {% if is_granted("ROLE_SUPER_ADMIN")  or is_granted('ROLE_SECRETARIA')  %}
+      <!-- Accordion -->
+      <div id="accordionExample" class="accordion shadow">
+        <!-- Accordion item 2 -->
+        <div class="card">
+          <div id="headingTwo" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold"><a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="d-block position-relative collapsed text-dark text-uppercase collapsible-link py-2">Récord de notas todos los periodos del  Nivel {{ materias.nivel.Nivel }}-- Paralelo "{{paralelo.grupo.Nombre}}" </a></h6>
+          </div>
+          <div id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample" class="collapse">
+            <div class="card-body p-5">
+             <table id="example2" class="content-table table-sm" cellspacing="0" width="100%">
+
+    <thead>
+        <tr>
+            <th>ESTUDIANTES</th>
+            <th >PARCIAL 1 </th>
+            <th>PARCIAL 2</th>
+            <th>PARCIAL 3</th>
+            <th>TOTAL</th>
+            <th>NOTA SUPLETORIO</th>
+            <th>SUPLETORIO</th>
+             <th>PERIODO</th>
+        </tr>
+    </thead>
+    
+    
+      <tbody>
+        {% for n in notas1 %}
+            <tr>
+             <td>{{ n.Nombre }} {{n.Apellido}}</td>
+             <td> {{ n.Parcial1 }}</td>
+              <td>{{ n.Parcial2  }}</td>
+              <td> {{ n.Parcial3  }} </td>
+                  <td>{{ n.Total }}</td>
+                <td>{{ n.nota_supletorio  }}</td>
+                <td>{{ n.Supletorio}}</td>
+                 <td>{{ n.Periodo}}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+ 
+</table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ {% endif %}
+
+
+
+{% endblock %}
+
+ {% block javascripts %}
+        <script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+
+        <script>
+
+$(document).ready(function() {    
+    	var table = $('#example').DataTable({
+     
+      dom: 'Bfrtip Plfrtip',
+       buttons: [
+            {
+                extend: 'excelHtml5',
+                title: '',
+                filename:'{{ materias.Materia }} -- {{paralelo.grupo.Nombre}} ',
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+
+                excelStyles: {                
+                    "template": [
+                        "green_medium",
+                        "header_blue",
+                        "title_little"
+                    ] 
+                    
+                },
+
+            },
+             {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir(Notas)",
+                exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                          
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="80"/> <h5 class="text-center">CALIFICACIONES FINALES</h5><h6>Carrera: {{ materias.carrera.Carrera}}</h6> <h6>Lista de Estudiantes  {{ materias.Materia }}</h6> <h6>Nivel:{{ materias.nivel.Nivel }}--"{{paralelo.grupo.Nombre}}" </h6> <h6>Profesor: {{paralelo.employed.Nombre}} {{paralelo.employed.Apellido}}</h6>  <h6> PERIODO ACADEMICO {% for periodo in periodos %}{{ periodo.Periodo }}  {% else %}NO EXISTE REGISTROS{% endfor %} </h6>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                        
+                    $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                     $(win.document.body).find('th').css('border', '1px solid #000');
+      
+                }
+            },
+
+             {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir(Listas)",
+                exportOptions: {
+                        columns: [1,8] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                          
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="80"/> <h5 class="text-center">LISTAS DE ESTUDIANTES</h5><h6>Carrera: {{ materias.carrera.Carrera}}</h6> <h6>Lista de Estudiantes  {{ materias.Materia }}</h6> <h6>Nivel:{{ materias.nivel.Nivel }}--"{{paralelo.grupo.Nombre}}" </h6> <h6>Profesor: {{paralelo.employed.Nombre}} {{paralelo.employed.Apellido}}</h6> <h6>PERIODO ACADEMICO  {% for periodo in periodos %}{{ periodo.Periodo }}  {% else %}NO EXISTE REGISTROS{% endfor %} </h6>'
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit','border' );
+
+                    $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                      $(win.document.body).find('th').css('border', '1px solid #000');
+      
+}
+            },
+
+            {
+                extend: 'copyHtml5',
+                title: 'Notas de Estudiantes',
+                text: "Copiar",
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+            }
+        ],
+     
+      searchPanes: {
+        panes: [
+            {
+            header: 'Aprobados y Reprobados ',
+            options: [
+                {
+
+                label: 'Aprobados',
+                value: function(rowData, rowIdx){
+                  
+
+                    return rowData[5] >= 21 | rowData[7] >= 21 ;
+
+                 
+                }
+                },
+                
+                
+                {
+                 label: 'Reprobados',
+
+                value: function(rowData, rowIdx){
+                   
+                  if(rowData[5] !=null && rowData[7] !=null){
+
+                          return rowData[5] < 21 && rowData[7] < 21 ;
+                      
+                  }  
+                }
+                }
+                ]
+        }]
+    },
+    columnDefs: [
+         {
+                searchPanes: {
+                    show: false
+                },
+                targets: [2]
+            },
+         
+          {
+                searchPanes: {
+                    show: false
+                },
+                targets: [3]
+            },
+          {
+                searchPanes: {
+                    show: false
+                },
+                targets: [4]
+            },
+           {
+                searchPanes: {
+                    show: false
+                },
+                targets: [5]
+            },
+        
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [6]
+            },
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [7]
+            },
+    
+           
+        ],
+     
+  
+  
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+            searchPanes: {
+                clearMessage: 'Limpiar Panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun filtro seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            },
+             buttons: {
+                copyTitle: 'Agregado al portapapeles',
+                copyKeys: 'Seguir adelante <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> para copiar los datos de la tabla a su portapapeles. <br><br>Para cancelar, haga clic en este mensaje o presione Esc.',
+                copySuccess: {
+                    _: '%d datos copiados',
+                    1: '1 ligne copiée'
+                }
+            }
+
+        },
+
+    'responsive': true,
+    'rowCallback': function(row, data, index){
+    if(data[5]>= 21){
+        $(row).find('td:eq(5)').css('color', 'green');
+    }else if(data[5]< 21){
+      $(row).find('td:eq(5)').css('color', 'red');
+    }
+
+     if(data[7]>= 21){
+        $(row).find('td:eq(7)').css('color', 'green');
+    }else if(data[8]< 21){
+        $(row).find('td:eq(7)').css('color', 'red');
+    }
+  }
+
+  });
+
+   
+ 
+} );
+ </script>
+
+
+ 
+        <script>
+
+$(document).ready(function() {    
+    	var table = $('#example2').DataTable({
+     
+      dom: 'Bfrtip Plfrtip',
+       buttons: [
+            {
+                extend: 'excelHtml5',
+                title: '',
+                filename:'{{ materias.Materia }} -- {{paralelo.grupo.Nombre}} ',
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+
+                excelStyles: {                
+                    "template": [
+                        "green_medium",
+                        "header_blue",
+                        "title_little"
+                    ] 
+                    
+                },
+
+            },
+             {
+                extend: 'print',
+                title: '',
+                text: "PDF/Imprimir",
+                exportOptions: {
+                        columns: [1, 2, 3, 4, 5, 6, 7] //exportar solo la primera y segunda columna
+                    },
+                customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '10pt' )
+                        .prepend(
+                          
+                            '<img src="https://istalfonsoherrera.edu.ec/symfony/app/public/image/Cabeza_Vertical.jpg"  style="float:center" width=100% height="80"/> <h5 class="text-center">RECORD ACADEMICO DEL PARALELO </h5><h6>Carrera: {{ materias.carrera.Carrera}}</h6> <h6>Lista de Estudiantes  {{ materias.Materia }}</h6> <h6>Nivel:{{ materias.nivel.Nivel }}--"{{paralelo.grupo.Nombre}}" </h6> <h6>Profesor: {{paralelo.employed.Nombre}} {{paralelo.employed.Apellido}}</h6>'
+                            
+                        );
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                          $(win.document.body).find('table').css('border', '1px solid #000');
+                    $(win.document.body).find('tr').css('border', '1px solid #000');
+                    $(win.document.body).find('td').css('border', '1px solid #000');
+                      $(win.document.body).find('th').css('border', '1px solid #000');
+      
+                }
+            },
+
+            {
+                extend: 'copyHtml5',
+                title: 'Notas de Estudiantes',
+                text: "Copiar",
+                exportOptions: {
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7] 
+                    }, 
+            }
+        ],
+     
+      searchPanes: {
+        panes: [
+            {
+            header: 'Aprobados y Reprobados ',
+            options: [
+                {
+
+                label: 'Aprobados',
+                value: function(rowData, rowIdx){
+                  
+
+                    return rowData[4] >= 21 | rowData[6] >= 21 ;
+
+                 
+                }
+                },
+                {
+                 label: 'Reprobados',
+
+                value: function(rowData, rowIdx){
+                   
+                  if(rowData[4] !=null && rowData[6] !=null){
+
+                          return rowData[4] < 21 && rowData[6] < 21 ;
+                      
+                  }  
+                }
+                }
+                ]
+        }]
+    },
+    columnDefs: [
+         {
+                searchPanes: {
+                    show: false
+                },
+                targets: [0]
+            },
+         {
+                searchPanes: {
+                    show: false
+                },
+                targets: [1]
+            },
+         {
+                searchPanes: {
+                    show: false
+                },
+                targets: [2]
+            },
+         
+          {
+                searchPanes: {
+                    show: false
+                },
+                targets: [3]
+            },
+          {
+                searchPanes: {
+                    show: false
+                },
+                targets: [4]
+            },
+           {
+                searchPanes: {
+                    show: false
+                },
+                targets: [5]
+            },
+        
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [6]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [7]
+            },
+    
+           
+        ],
+     
+  
+  
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+            searchPanes: {
+                clearMessage: 'Limpiar Panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun filtro seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            },
+             buttons: {
+                copyTitle: 'Agregado al portapapeles',
+                copyKeys: 'Seguir adelante <i>ctrl</i> ou <i>\u2318</i> + <i>C</i> para copiar los datos de la tabla a su portapapeles. <br><br>Para cancelar, haga clic en este mensaje o presione Esc.',
+                copySuccess: {
+                    _: '%d datos copiados',
+                    1: '1 ligne copiée'
+                }
+            }
+        },
+
+    'responsive': true,
+    'rowCallback': function(row, data, index){
+    if(data[4]>= 21){
+        $(row).find('td:eq(4)').css('color', 'green');
+    }else if(data[4]< 21){
+      $(row).find('td:eq(4)').css('color', 'red');
+    }
+
+     if(data[6]>= 21){
+        $(row).find('td:eq(6)').css('color', 'green');
+    }else if(data[6]< 21){
+        $(row).find('td:eq(6)').css('color', 'red');
+    }
+  }
+
+  });
+
+   
+ 
+} );
+ </script>
+
+
+
+
+ <script>     
+   $('.dropdown-toggle').dropdown();
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+
+
+         
+        
+        {% endblock %}

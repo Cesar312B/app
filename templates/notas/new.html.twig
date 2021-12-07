@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Notas{% endblock %}
+
+{% block body %}
+    <h1>CEAR NUEVA NOTA </h1>
+
+    {{ include('notas/_form.html.twig') }}
+
+    <a href="{{ path('notas_index') }}">NO EXISTE REGISTROS</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nivel index{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>NIVELES</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+               
+                <th>NIVEL</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nivel in nivels %}
+            <tr>
+                <td>{{ nivel.Nivel }}</td>
+                <td>
+                    <a href="{{ path('nivel_edit', {'id': nivel.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('nivel_new') }}">CREAR NUEVO NIVEL</a>
+    </div>
+{% endblock %}

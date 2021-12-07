@@ -1,0 +1,40 @@
+ 
+ {% extends 'base.html.twig' %}
+
+{% block title %}asistencia_profesor{% endblock %}
+
+{% block body %}
+ 
+        <div class="card-body p-5 bg-white rounded">
+          <div class="table-responsive">
+            <table id="example1" style="width:100%" class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                     <th>Id</th>
+                <th>Materia</th>
+                 <th>Estudiante</th>
+                   <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+               {% for nota in asistencias %}
+            <tr>
+                <td>{{ nota.id }}</td>
+               <td>{{ nota.Materia }}</td>
+               <td>{{ nota.Nombre }} {{ nota.Apellido }}</td>
+                <td>{{ nota.Faltas }} %</td>
+             
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18"> No hay registros</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+    
+{% endblock %}

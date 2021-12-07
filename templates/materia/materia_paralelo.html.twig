@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Materia estudiante{% endblock %}
+
+{% block body %}
+
+   <div class="p-5 bg-white rounded shadow mb-5">
+
+    <h6>
+  CARRERA:   {{ materias.carrera.Carrera}}
+  </h6>    
+
+  <h6>
+  MATERIA:   {{ materias.Materia }}
+  </h6> 
+   <h6>
+  NIVEL:     {{materias.nivel.Nivel}}
+  </h6> 
+  
+    <a href="{{ path('paralelo_new', {'id': materias.id}) }}">+NUEVO PARALELO</a></br>
+<div class="table-responsive-sm">  
+     <table id="example" style="width:100%" class="content-table">
+              <thead>
+                <tr>
+                <th>MATERIA</th>
+                <th>PARALELO</th>
+                <th>PROFESOR</th>
+                 <th>ESTADO</th>
+                <th>ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for materium in paralelos %}
+            <tr>
+              
+                <td>{{ materium.Materia }}</td>
+                  <td>{{ materium.Paralelo }}</td>
+                   <td>{{ materium.Nombre }} {{ materium.Apellido}} </td>
+                    <td>{{ materium.estado}}</td>
+                <td>
+                  
+                   <a href="{{ path('paralelo_edit', {id: materium.id, m: materium.CD}) }}">ESTADO</a></br>
+                   <a href="{{ path('paralelo_horario', {id: materium.id, t: materium.CD}) }}">HORARIO</a></br>
+                    <a href="{{ path('studintes_paralelo', {id: materium.id, m: materium.CD}) }}">ESTUDIANTES</a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">No hay registros</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+            </div>
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+  $(document).ready(function() {
+    $('#example').DataTable({
+      "searching": false,
+        "paging":   false,
+      'responsive': true,
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+        },
+  
+    });
+});
+
+        </script>
+
+
+  
+
+   {% endblock %}
+

@@ -1,0 +1,88 @@
+{% extends 'student_base.html.twig' %}
+
+{% block title %}Solicitud index{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+{% set var = "Activado" %}  
+{% if modulo.estado == var %}
+    <h4>SOLICITUDES</h4>
+   
+   {{ include('solicitud/_form.html.twig') }}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Archivo</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for solicitud in solicituds %}
+            <tr>
+               
+                <td>
+                  <a href="#" data-toggle="modal"data-target=".bd-example{{solicitud.id}}-modal-lg"  >SOLICITUD</a>
+                 <div class="modal fade bd-example{{solicitud.id}}-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabe2" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+               </button>
+         <div class="modal-content">
+
+        <div>
+      <object
+        data="{{ asset('uploads/solicitud/'~solicitud.archivo) }}"
+        type="application/pdf"
+        width="800"
+        height="800"
+      >
+
+        <iframe
+          src="{{ asset('uploads/solicitud/'~solicitud.archivo) }}"
+          width=100%
+          height=!00%
+        >
+        </iframe>
+
+      </object>
+    </div>
+
+    </div>
+  </div>
+</div>
+                <td>{{ solicitud.fecha ? solicitud.fecha|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('solicitud_edit', {'id': solicitud.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% else %}
+<h4>NO ESTÁ DISPONIBLE </h4>
+      {% endif %}
+
+
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+<script>     
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+ {% endblock %}

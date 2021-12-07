@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo horario{% endblock %}
+
+{% block body %}
+    <h1>CREAR NUEVO HORARIO</h1>
+
+    {{ include('horario/_form.html.twig') }}
+
+    <a href="{{ path('horario_index') }}">Regresar</a>
+{% endblock %}

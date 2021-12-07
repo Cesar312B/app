@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Notas{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+{% set var = "Activado" %}  
+{% if modulo.estado == var %}
+<h3>PARCIAL 2</h3>    
+<a href="{{ path('studintes_paralelo', {id: paralelo.id, m: materias.id}) }}">ESTUDIANTES</a>
+<br/>
+    {{student.Nombre}} {{student.Apellido}}</br>
+   {{materias.Materia}} {{paralelo.grupo.Nombre}}
+
+   
+    
+      {% for message in app.flashes('exito') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+     {{ form_start(form) }}
+    <div class="row">
+       <div class="input-group col-lg-6 mb-4">
+    {{ form_row(form.nota6) }} Descripcion: {{nota.nota6descripcion}}  
+       {{ form_row(form.nota7) }}  Descripcion: {{nota.nota7descripcion}}  
+          {{ form_row(form.nota8) }} Descripcion: {{nota.nota8descripcion}}  
+             {{ form_row(form.nota9) }}  Descripcion: {{nota.nota9descripcion}}  
+                {{ form_row(form.nota10) }}  Descripcion: {{nota.nota10descripcion}}  
+        </div>        
+
+</div>
+    <button class="btn btn-success">{{ button_label|default('Calificar') }}</button>
+{{ form_end(form) }}
+</br>
+{% set total2 = 0 %}
+        {% set total2 = (nota.nota6 + nota.nota7 + nota.nota8 + nota.nota9 + nota.nota10)/5 %}
+                <h6>Promedio={{total2 |number_format(2, '.', '.') }}</h6>
+  
+
+  {% else %}
+<h4>NO ESTA DISPONIBLE</h4>
+      {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nuevo estudiante{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h5>REGISTRAR ESTUDIANTE</h5>
+
+    {{ include('student/_form.html.twig') }}
+
+    <a href="{{ path('student_index') }}">Regresar a la lista</a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    <script> 
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+<script>     
+                $('.custom-file-input').on('change', function(event) {
+                    var inputFile = event.currentTarget;
+                    $(inputFile).parent()
+                        .find('.custom-file-label')
+                        .html(inputFile.files[0].name);
+                });
+            </script>
+ {% endblock %}

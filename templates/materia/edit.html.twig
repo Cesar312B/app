@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar materia{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>EDITAR MATERIA</h1>
+    {{ include('materia/_form.html.twig', {'button_label': 'Editar'}) }}
+
+    <a href="{{ path('materia_index') }}">Regresar a la lista</a>
+{% if is_granted("ROLE_SUPER_ADMIN") %}
+    {{ include('materia/_delete_form.html.twig') }}
+    {% endif %}
+    </div>
+</div>
+{% endblock %}

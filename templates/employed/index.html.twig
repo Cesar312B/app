@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EMPLEADO{% endblock %}
+
+{% block body %}
+    <div class="card-body p-5 bg-white rounded">
+    {% if is_granted("ROLE_SUPER_ADMIN") %}
+       <a href="{{ path('employed_new') }}">+ REGISTRAR NUEVO EMPLEADO</a>
+        {% endif %}
+       <div class="table-responsive">
+            <table id="example" style="width:100%" class="content-table table-sm ">
+              <thead>
+                <tr>
+                <th>CÉDULA</th>
+                <th>NOMBRE</th>
+                <th>FOTO</th>
+                <th>PROFESIÓN</th>
+                <th>FECHA_INGRESO</th>
+                <th>ROLES</th>
+                <th>BLOQUEADO</th>
+                <th>ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+                 {% for employed in employeds %}
+            <tr>
+            
+                <td>
+                 <i class="bi bi-plus-circle"></i>
+                {{ employed.username }}</td>
+                <td>{{ employed.Nombre }} {{ employed.Apellido }}</td>
+                <td> <img src="{{ asset('uploads/'~employed.foto) }}" alt="" width="50" class="mr-3 rounded-circle img-thumbnail shadow-sm"></td>
+                <td>{{ employed.Profesion }}</td>
+                 <td>{{ employed.FechaIngreso ? employed.FechaIngreso|date('Y-m-d') : '' }}</td>
+                <td>{{ employed.roles ? employed.roles|json_encode : '' }}</td>
+                <td>{{ employed.isActive ? 'No' : 'Si' }}</td>
+                <td>
+                    <a href="{{ path('employed_show', {'id': employed.id}) }}">MIRAR</a>
+                    {% if is_granted("ROLE_SUPER_ADMIN") %}
+                    <a href="{{ path('employed_edit', {'id': employed.id}) }}">EDITAR</a>
+                     {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">NO EXISTE REGISTROS</td>
+            </tr>
+        {% endfor %}
+              </tbody>
+            </table>
+            </div>
+        </div>
+
+ 
+{% endblock %}
+
+{% block javascripts %}
+<script> 
+          
+        $(function() {
+  // Sidebar toggle behavior
+  $('#sidebarCollapse').on('click', function() {
+    $('#sidebar, #content').toggleClass('active');
+  });
+});
+        </script>
+
+  <script> 
+          $(document).ready(function() {
+    $('#example').DataTable({
+        dom: 'Plfrtip',
+          columnDefs: [
+        
+             {
+                searchPanes: {
+                    show: false
+                },
+                targets: [4]
+            },
+             {
+                searchPanes: {
+                    show: true
+                },
+                targets: [5]
+            },
+
+        
+           
+        ],
+        
+       language: {
+            url: 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json',
+            searchPanes: {
+                clearMessage: 'Limpiar panel',
+                title: {
+                     _: 'Filters Selected - %d',
+                    0: 'Ningun filtro seleccionado',
+                    1: 'Filtros seleccionado ', 
+                   
+                },
+            }
+        },
+
+       
+         'responsive': true,
+    });
+});
+   
+  
+        </script>
+
+
+  
+
+   {% endblock %}

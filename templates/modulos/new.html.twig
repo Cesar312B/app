@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Modulos{% endblock %}
+
+{% block body %}
+<div class="card-body p-5 bg-white rounded">
+    <h1>CREAR NUEVO MÓDULOS</h1>
+
+    {{ include('modulos/_form.html.twig') }}
+
+    <a href="{{ path('modulos_index') }}">Regresar a la Lista</a>
+</div>
+{% endblock %}

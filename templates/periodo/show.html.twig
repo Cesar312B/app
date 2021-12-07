@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Periodo{% endblock %}
+
+{% block body %}
+    <h1>PERIODO</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ periodo.id }}</td>
+            </tr>
+            <tr>
+                <th>FECHA</th>
+                <td>{{ periodo.Fecha ? periodo.Fecha|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PERIODO</th>
+                <td>{{ periodo.Periodo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('periodo_index') }}">Regresar</a>
+
+    <a href="{{ path('periodo_edit', {'id': periodo.id}) }}">Editar</a>
+
+    {{ include('periodo/_delete_form.html.twig') }}
+{% endblock %}
