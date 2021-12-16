@@ -1,5 +1,7 @@
 # app
 Symfony estudent adminstrators +
+</br>
+Desarrollado como tesis de grado en el Instituto Tecnologico Superior Alfonso Herrera 
 El Sistema realiza:
 -	Módulo de estudiantes que incluye registro de Alumnos.
 -	Control de claves de acceso. 
